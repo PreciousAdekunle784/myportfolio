@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Project | Precious - Funnel Architect</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Specific page overrides to ensure high contrast and spacing */
+        .form-page {
+            background: radial-gradient(circle at 50% 0%, rgba(109, 40, 217, 0.08) 0%, #050505 80%);
+            background-color: #050505;
+            min-height: 100vh;
+        }
+
+        /* Fixed nav spacing fix */
+        .apply-container {
+            padding-top: 180px;
+            padding-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Ensure dropdown visibility */
+        select option {
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body class="form-page">
+
+    <nav class="glass-nav">
+        <div class="logo">PRECIOUS<span class="dot">.</span></div>
+        <div class="nav-links">
+            <a href="index.html" class="social-icon">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <main class="apply-container">
+        <section class="section-header centered-header reveal">
+            <div class="roadmap-pill">Project Inquiry</div>
+            <h1>Engineer Your <span class="gradient-text">Revenue Flow</span></h1>
+            <p>I'm Precious, a Hydrology-trained architect. Fill out the details below to identify your funnel leaks and
+                start your scaling journey.</p>
+        </section>
+
+        <div class="form-container glass-card reveal delay-1">
+            <form
+                action="https://script.google.com/macros/s/AKfycbzm2kS_gU1ihhkTGHXQm9tcSyurweN6fkFIPlC4dk7-VO-XEyKWhA52gfI0jyAOm0W5/exec"
+                method="POST">
+
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="input-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" name="name" placeholder="Precious" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="coach@example.com" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="niche">Business Niche</label>
+                            <select id="niche" name="niche" required>
+                                <option value="" disabled selected>Select your niche</option>
+                                <option value="coaching">High-Ticket Coaching</option>
+                                <option value="consulting">Consulting / Agency</option>
+                                <option value="courses">Course Creator</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-column">
+                        <div class="input-group full-height">
+                            <label for="leaks">Where are the biggest "leaks" in your funnel?</label>
+                            <textarea id="leaks" name="message" placeholder="Tell me about your current process..."
+                                required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-wrapper">
+                    <button type="submit" class="cta-button main-cta pulse-animation">
+                        Submit Project Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem;">
+        <p>&copy; 2026 PRECIOUS PORTFOLIO. Built for high-flow conversion.</p>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>
