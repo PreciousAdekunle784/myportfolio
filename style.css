@@ -1166,3 +1166,46 @@ footer {
     color: #ffffff;
     /* White text for readability */
 }
+
+/* --- MOBILE VIEW OPTIMIZATION --- */
+
+@media (max-width: 768px) {
+
+    /* Move the vertical line to the far left */
+    .timeline-container::before {
+        left: 20px;
+        transform: none;
+    }
+
+    /* Adjust items to align with the new line position */
+    .timeline-item {
+        width: 100% !important;
+        padding-left: 50px !important;
+        /* Space for the line */
+        padding-right: 0 !important;
+        margin-bottom: 40px;
+        text-align: left !important;
+    }
+
+    /* Remove the 'zig-zag' effect on mobile */
+    .timeline-item:nth-child(even),
+    .timeline-item:nth-child(odd) {
+        align-self: flex-start;
+        left: 0;
+    }
+
+    /* Ensure cards take full width but don't overflow */
+    .timeline-content {
+        width: 100%;
+        max-width: none;
+    }
+
+    /* Fix the header alignment */
+    .centered-header {
+        padding: 0 20px;
+    }
+
+    .centered-header h2 {
+        font-size: 2rem;
+    }
+}
