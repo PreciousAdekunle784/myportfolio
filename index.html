@@ -5,45 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Precious | The Funnel Architect</title>
-
+    <meta name="description"
+        content="Precious — Direct response copywriter and funnel architect. I turn cold traffic into liquid revenue through high-converting landing pages and email automations.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Manrope:wght@600;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-
-
     <div id="spotlight"></div>
 
+    <!-- NAVIGATION -->
     <nav class="glass-nav">
-        <div class="logo">Portfolio<span class="dot">.</span></div>
-        <a href="https://calendly.com/preciousadekunle784" target="_blank" class="cta-button nav-cta">Book Strategy
-            Call</a>
+        <div class="logo">Precious<span class="dot">.</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#analytics">Results</a>
+            <a href="#portfolio">Work</a>
+        </div>
+        <a href="https://calendly.com/preciousadekunle784" target="_blank" class="cta-button nav-cta">Book a Call</a>
+        <div class="menu-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </div>
     </nav>
 
-    <a href="https://calendly.com/preciousadekunle784" target="_blank" class="cta-button main-cta pulse-animation">Book
-        Strategy Call</a>
-
+    <!-- HERO -->
     <header class="hero">
+        <div class="hero-orb orb-1"></div>
+        <div class="hero-orb orb-2"></div>
         <div class="hero-content hero-load">
             <div class="pill-container">
-                <span class="pill">● Available for New Projects</span>
+                <span class="pill"><span class="pill-dot"></span> Available for New Projects</span>
             </div>
             <h1>
                 I Turn <span class="gradient-text">Cold Traffic</span><br>
                 Into <span class="gradient-text">Liquid Revenue.</span>
             </h1>
             <p class="subheadline">
-                The copywriter & funnel architect for coaches who are tired of manual launching. I build the
+                The copywriter &amp; funnel architect for coaches who are tired of manual launching. I build the
                 <strong>Landing Pages</strong> and <strong>Email Automations</strong> that scale your revenue 24/7.
             </p>
-
             <div class="button-group">
                 <a href="apply.html" class="cta-button main-cta pulse-animation">Start Your Project</a>
                 <p class="micro-copy">No generic templates. Custom strategy only.</p>
@@ -51,6 +57,7 @@
         </div>
     </header>
 
+    <!-- TICKER -->
     <div class="ticker-wrap">
         <div class="ticker">
             <div class="ticker-item">HIGH CONVERTING SALES PAGES •</div>
@@ -66,119 +73,351 @@
         </div>
     </div>
 
-
-    <section id="about" class="about-section services">
-        <div class="section-header centered-header hidden-up">
+    <!-- ABOUT -->
+    <section id="about" class="about-section">
+        <div class="centered-header hidden-up">
             <div class="roadmap-pill">The Architect</div>
             <h2>Behind the Flow</h2>
         </div>
 
         <div class="about-grid">
-            <div class="about-content hidden-left">
+            <!-- Photo -->
+            <div class="about-photo-col hidden-left">
+                <div class="photo-wrapper">
+                    <div class="photo-glow"></div>
+                    <img src="profile.jpg" alt="Precious — Funnel Architect" class="profile-photo">
+                    <div class="photo-badge">
+                        <span class="badge-dot"></span> Available for Projects
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text -->
+            <div class="about-text-col hidden-right">
                 <p class="about-lead">
                     I'm Precious, a Hydrology student and digital creator dedicated to engineering high-converting sales
                     ecosystems.
                 </p>
-                <p>
-                    My background in Hydrology gives me a unique perspective on <strong>fluid dynamics</strong> which I
-                    apply to digital marketing by ensuring your lead flow is seamless, directed, and free of "leaks."
+                <p class="about-body">
+                    My background in Hydrology gives me a unique perspective on <strong>fluid dynamics</strong> — which
+                    I apply to digital marketing by ensuring your lead flow is seamless, directed, and free of "leaks."
                 </p>
-                <p>
+                <p class="about-body">
                     Whether I'm crafting long-form sales copy or building complex email automations, I focus on the
                     science of movement: moving a stranger from curiosity to a confirmed sale.
                 </p>
-            </div>
-
-            <div class="about-stats hidden-right">
-                <div class="stat-item">
-                    <h4>Specialization</h4>
-                    <p>Direct Response Copywriting & Funnel Flow.</p>
-                </div>
-                <div class="stat-item">
-                    <h4>Education</h4>
-                    <p>Hydrology Student (Focus on Systems & Flow).</p>
-                </div>
-                <div class="stat-item">
-                    <h4>Project Logic</h4>
-                    <p>Leak-Proof Automations & Data-Driven Copy.</p>
+                <div class="about-stats-row">
+                    <div class="stat-card">
+                        <h4>Specialization</h4>
+                        <p>Direct Response Copywriting &amp; Funnel Flow.</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Education</h4>
+                        <p>Hydrology Student (Systems &amp; Flow).</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Project Logic</h4>
+                        <p>Leak-Proof Automations &amp; Data-Driven Copy.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services">
-        <div class="section-header hidden-up centered-header">
+    <!-- SERVICES -->
+    <section id="services" class="services-section">
+        <div class="centered-header hidden-up">
+            <div class="roadmap-pill">What I Do</div>
             <h2>The Revenue System</h2>
+            <p>Four precision-engineered services that work together to scale your income 24/7.</p>
         </div>
 
-        <div class="cards-container">
-            <div class="glass-card hidden-up">
-                <h3>01. Sales Landing Pages</h3>
+        <div class="cards-grid">
+            <div class="service-card hidden-up">
+                <div class="card-number">01</div>
+                <h3>Sales Landing Pages</h3>
                 <p>Long-form sales letters and VSL scripts. I craft the hooks, the story, and the offer stack to move
                     leads from skepticism to "Where do I pay?"</p>
+                <div class="card-tag">High Conversion</div>
             </div>
-
-            <div class="glass-card hidden-up delay-100">
-                <h3>02. Sales Funnel Strategy</h3>
+            <div class="service-card hidden-up delay-100">
+                <div class="card-number">02</div>
+                <h3>Sales Funnel Strategy</h3>
                 <p>The complete roadmap. I map out the customer journey from Lead Magnet → Tripwire → Core Offer →
-                    Upsell. I design the ecosystem that maximizes Order Value.</p>
+                    Upsell, designed to maximize Order Value.</p>
+                <div class="card-tag">Full Ecosystem</div>
             </div>
-
-            <div class="glass-card hidden-up delay-200">
-                <h3>03. Email Copywriting</h3>
-                <p>The words that bond and sell. I write high-engagement <strong>Welcome Sequences</strong>,
-                    <strong>Soap Opera Sequences</strong>, and <strong>Promotional Blasts</strong> that get opened and
-                    clicked.
-                </p>
+            <div class="service-card hidden-up delay-200">
+                <div class="card-number">03</div>
+                <h3>Email Copywriting</h3>
+                <p>I write high-engagement <strong>Welcome Sequences</strong>, <strong>Soap Opera Sequences</strong>,
+                    and <strong>Promotional Blasts</strong> that get opened and clicked.</p>
+                <div class="card-tag">Bond &amp; Sell</div>
             </div>
-
-            <div class="glass-card hidden-up delay-300">
-                <h3>04. Email Automation</h3>
-                <p>The backend tech. I set up the <strong>triggers, tags, and workflows</strong> in ActiveCampaign or
-                    GoHighLevel so your business runs while you sleep.</p>
+            <div class="service-card hidden-up delay-300">
+                <div class="card-number">04</div>
+                <h3>Email Automation</h3>
+                <p>I set up <strong>triggers, tags, and workflows</strong> in ActiveCampaign or GoHighLevel so your
+                    business runs while you sleep.</p>
+                <div class="card-tag">Backend Tech</div>
             </div>
         </div>
     </section>
 
+    <!-- ANALYTICS COMPARISON -->
+    <section id="analytics" class="analytics-section">
+        <div class="centered-header hidden-up">
+            <div class="roadmap-pill">Data-Driven Results</div>
+            <h2>The Numbers Don't Lie</h2>
+            <p>Here's what happens when you stop guessing and start working with a system built for conversion.</p>
+        </div>
+
+        <!-- Toggle -->
+        <div class="analytics-toggle hidden-up">
+            <button class="toggle-btn active" data-view="bars">Bar Comparison</button>
+            <button class="toggle-btn" data-view="gauges">Performance Gauges</button>
+        </div>
+
+        <!-- BAR CHART VIEW -->
+        <div class="analytics-view bars-view active-view">
+            <div class="comparison-grid">
+                <div class="comparison-card hidden-up">
+                    <div class="comp-header">
+                        <h4>Landing Page Conversion</h4>
+                        <div class="comp-tooltip">Visitor-to-lead rate on sales pages</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-row">
+                            <span class="bar-label">Industry Avg</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-muted" data-width="2.35" data-max="18">
+                                    <span class="bar-value">2.35%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">With Precious</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-accent" data-width="8.7" data-max="18">
+                                    <span class="bar-value">8.7%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comp-uplift">
+                        <span class="uplift-arrow">↑</span> 270% higher conversion
+                    </div>
+                </div>
+
+                <div class="comparison-card hidden-up delay-100">
+                    <div class="comp-header">
+                        <h4>Email Open Rate</h4>
+                        <div class="comp-tooltip">Average across welcome & nurture sequences</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-row">
+                            <span class="bar-label">Industry Avg</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-muted" data-width="21.3" data-max="70">
+                                    <span class="bar-value">21.3%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">With Precious</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-accent" data-width="47.8" data-max="70">
+                                    <span class="bar-value">47.8%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comp-uplift">
+                        <span class="uplift-arrow">↑</span> 124% above average
+                    </div>
+                </div>
+
+                <div class="comparison-card hidden-up delay-200">
+                    <div class="comp-header">
+                        <h4>Email Click-Through Rate</h4>
+                        <div class="comp-tooltip">Clicks per email delivered in sequences</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-row">
+                            <span class="bar-label">Industry Avg</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-muted" data-width="2.6" data-max="16">
+                                    <span class="bar-value">2.6%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">With Precious</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-accent" data-width="11.4" data-max="16">
+                                    <span class="bar-value">11.4%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comp-uplift">
+                        <span class="uplift-arrow">↑</span> 338% more clicks
+                    </div>
+                </div>
+
+                <div class="comparison-card hidden-up delay-300">
+                    <div class="comp-header">
+                        <h4>Funnel Revenue per Lead</h4>
+                        <div class="comp-tooltip">Average revenue generated per new lead entering the funnel</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-row">
+                            <span class="bar-label">Industry Avg</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-muted" data-width="3.20" data-max="22">
+                                    <span class="bar-value">$3.20</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">With Precious</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-accent" data-width="14.60" data-max="22">
+                                    <span class="bar-value">$14.60</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comp-uplift">
+                        <span class="uplift-arrow">↑</span> 356% more revenue per lead
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GAUGE VIEW -->
+        <div class="analytics-view gauges-view">
+            <div class="gauges-grid">
+                <div class="gauge-card hidden-up">
+                    <div class="gauge-wrapper">
+                        <svg class="gauge-svg" viewBox="0 0 120 120">
+                            <circle class="gauge-bg" cx="60" cy="60" r="52" />
+                            <circle class="gauge-fill" cx="60" cy="60" r="52" data-percent="87" />
+                        </svg>
+                        <div class="gauge-center">
+                            <span class="gauge-number" data-count="87" data-suffix="%">0%</span>
+                        </div>
+                    </div>
+                    <h4>Client Retention</h4>
+                    <p class="gauge-sub">Clients who return for additional projects</p>
+                </div>
+
+                <div class="gauge-card hidden-up delay-100">
+                    <div class="gauge-wrapper">
+                        <svg class="gauge-svg" viewBox="0 0 120 120">
+                            <circle class="gauge-bg" cx="60" cy="60" r="52" />
+                            <circle class="gauge-fill" cx="60" cy="60" r="52" data-percent="94" />
+                        </svg>
+                        <div class="gauge-center">
+                            <span class="gauge-number" data-count="94" data-suffix="%">0%</span>
+                        </div>
+                    </div>
+                    <h4>On-Time Delivery</h4>
+                    <p class="gauge-sub">Projects delivered on or ahead of schedule</p>
+                </div>
+
+                <div class="gauge-card hidden-up delay-200">
+                    <div class="gauge-wrapper">
+                        <svg class="gauge-svg" viewBox="0 0 120 120">
+                            <circle class="gauge-bg" cx="60" cy="60" r="52" />
+                            <circle class="gauge-fill" cx="60" cy="60" r="52" data-percent="42" />
+                        </svg>
+                        <div class="gauge-center">
+                            <span class="gauge-number" data-count="42" data-suffix="%">0%</span>
+                        </div>
+                    </div>
+                    <h4>Avg Revenue Increase</h4>
+                    <p class="gauge-sub">Client revenue growth within 90 days</p>
+                </div>
+
+                <div class="gauge-card hidden-up delay-300">
+                    <div class="gauge-wrapper">
+                        <svg class="gauge-svg" viewBox="0 0 120 120">
+                            <circle class="gauge-bg" cx="60" cy="60" r="52" />
+                            <circle class="gauge-fill" cx="60" cy="60" r="52" data-percent="73" />
+                        </svg>
+                        <div class="gauge-center">
+                            <span class="gauge-number" data-count="73" data-suffix="%">0%</span>
+                        </div>
+                    </div>
+                    <h4>Funnel Completion Rate</h4>
+                    <p class="gauge-sub">Leads that complete the full funnel journey</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Stats Row -->
+        <div class="analytics-stats hidden-up">
+            <div class="analytics-stat">
+                <span class="stat-number" data-count="25" data-suffix="+">0</span>
+                <span class="stat-label">Funnels Built</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="analytics-stat">
+                <span class="stat-number" data-count="150" data-suffix="K+">0</span>
+                <span class="stat-label">Emails Sent</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="analytics-stat">
+                <span class="stat-number" data-count="3" data-suffix=".8x">0</span>
+                <span class="stat-label">Avg ROI</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="analytics-stat">
+                <span class="stat-number" data-count="48" data-suffix="hrs">0</span>
+                <span class="stat-label">Avg Turnaround</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
     <section id="process" class="process-section">
-        <div class="section-header hidden-up centered-header">
-            <h2>The Success Blueprint</h2>
+        <div class="centered-header hidden-up">
             <div class="roadmap-pill">A Proven 4-Step Roadmap</div>
+            <h2>The Success Blueprint</h2>
             <p>From initial "Idea" to high-converting "ROI."</p>
         </div>
 
         <div class="timeline-container">
+            <div class="timeline-line"></div>
             <div class="timeline-item hidden-left">
-                <div class="timeline-content glass-card">
+                <div class="timeline-content">
                     <span class="step-tag">Step 01</span>
                     <h3>Strategic Mapping</h3>
                     <p>We start with a deep dive into your offer. I map out the entire customer journey, identifying
                         exactly where your leaks are and how to plug them.</p>
                 </div>
             </div>
-
-            <div class="timeline-item hidden-right">
-                <div class="timeline-content glass-card">
+            <div class="timeline-item right hidden-right">
+                <div class="timeline-content">
                     <span class="step-tag">Step 02</span>
-                    <h3>Copywriting & Assets</h3>
+                    <h3>Copywriting &amp; Assets</h3>
                     <p>I craft high-converting landing pages and email sequences. Every word is designed to build
                         authority and crush objections.</p>
                 </div>
             </div>
-
             <div class="timeline-item hidden-left">
-                <div class="timeline-content glass-card">
+                <div class="timeline-content">
                     <span class="step-tag">Step 03</span>
                     <h3>Automation Integration</h3>
-                    <p>The tech phase. I build the backend logic setting up your tags, triggers, and sequences so the
-                        funnel runs without you touching it.</p>
+                    <p>The tech phase. I build the backend logic — tags, triggers, and sequences — so the funnel runs
+                        without you touching it.</p>
                 </div>
             </div>
-
-            <div class="timeline-item hidden-right">
-                <div class="timeline-content glass-card">
+            <div class="timeline-item right hidden-right">
+                <div class="timeline-content">
                     <span class="step-tag">Step 04</span>
-                    <h3>Optimization & Launch</h3>
+                    <h3>Optimization &amp; Launch</h3>
                     <p>We go live. I monitor the initial data to ensure everything is firing correctly and the
                         conversion rates are hitting our targets.</p>
                 </div>
@@ -186,15 +425,16 @@
         </div>
     </section>
 
-    <section id="portfolio" class="portfolio">
-        <div class="section-header centered-header hidden-up">
-            <div class="roadmap-pill">Methodology & Work</div>
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="centered-header hidden-up">
+            <div class="roadmap-pill">Methodology &amp; Work</div>
             <h2>Strategic Frameworks</h2>
             <p>I engineer outcomes through proven psychological logic and automated systems.</p>
         </div>
 
         <div class="framework-grid">
-            <div class="glass-card hidden-left">
+            <div class="framework-card hidden-left">
                 <span class="step-tag">Case Study 01</span>
                 <h3>High-Ticket Coaching Funnel</h3>
                 <div class="framework-meta">Client: Sofia Kakkava</div>
@@ -203,12 +443,11 @@
                 <ul class="framework-list">
                     <li>Strategic Funnel Architecture</li>
                     <li>Conversion-Optimized UI</li>
-                    <li><a href="https://kakkava.vercel.app" target="_blank" class="live-link">View Live Project
-                            →</a></li>
+                    <li><a href="https://kakkava.vercel.app" target="_blank" class="live-link">View Live Project →</a>
+                    </li>
                 </ul>
             </div>
-
-            <div class="glass-card hidden-right">
+            <div class="framework-card hidden-right">
                 <span class="step-tag">Case Study 02</span>
                 <h3>Sales Landing Page</h3>
                 <div class="framework-meta">Niche: Passive Income</div>
@@ -217,46 +456,67 @@
                 <ul class="framework-list">
                     <li>Direct Response Copywriting</li>
                     <li>Mobile-First Optimization</li>
-                    <li><a href="https://passive-in-come.vercel.app" target="_blank"
+                    <li><a href="https://preciousadekunle784.github.io/passiveincome/" target="_blank"
                             class="live-link">View Live Project →</a></li>
                 </ul>
             </div>
-            <div class="glass-card hidden-up delay-100">
+            <div class="framework-card hidden-up delay-100">
+                <span class="step-tag">Case Study 03</span>
+                <h3>Real Estate Brand Platform</h3>
+                <div class="framework-meta">Client: Lattes &amp; Leases</div>
+                <p>Engineered a full-scale brand ecosystem for a real estate investor — including course sales pages, resource hubs, lead magnets, and a multi-page funnel turning cold traffic into enrolled students.</p>
+                <ul class="framework-list">
+                    <li>Multi-Page Funnel Architecture</li>
+                    <li>Course &amp; Resource Hub Design</li>
+                    <li>Lead Magnet Integration</li>
+                    <li><a href="https://lattes-and-leases.vercel.app/" target="_blank" class="live-link">View Live Project →</a></li>
+                </ul>
+            </div>
+            <div class="framework-card hidden-up delay-200">
                 <span class="step-tag">Copywriting Asset</span>
                 <h3>High-Ticket Nurture Email</h3>
                 <div class="framework-meta">Focus: Psychological Hooks</div>
                 <p>A "Pattern-Interrupt" promotional email designed to move leads from passive scrolling to active
                     masterclass registrations.</p>
                 <ul class="framework-list">
-                    <li>Empathy-Led Storytelling </li>
-                    <li>Elimination of Risk (Zero Capital) </li>
-                    <li>Urgency & Scarcity Logic </li>
+                    <li>Empathy-Led Storytelling</li>
+                    <li>Elimination of Risk (Zero Capital)</li>
+                    <li>Urgency &amp; Scarcity Logic</li>
                     <li><a href="https://docs.google.com/document/d/1P4vi0jwc7d1cyWA7KsPSR478ZIbaFhr882AC9xjdopg/edit?usp=sharing"
                             target="_blank" class="live-link">Read the Copy →</a></li>
                 </ul>
             </div>
+            <div class="framework-card hidden-up delay-300">
+                <span class="step-tag">Copywriting Asset</span>
+                <h3>Revenue-Scaling Ads Copy</h3>
+                <div class="framework-meta">Client: Wander Coaching Academy</div>
+                <p>A direct-response ad targeting business owners stuck at a revenue plateau — using social proof, data-driven results (42% revenue increase), and a clear CTA to drive coaching enrollments.</p>
+                <ul class="framework-list">
+                    <li>Pain-Point Agitation &amp; Solution</li>
+                    <li>Social Proof with Real Metrics</li>
+                    <li>Clear Call-to-Action Framework</li>
+                    <li><a href="https://docs.google.com/document/d/1z0X1Ofdkb7FUKYmB0TJ6tGqhbj5YC99PBTIFdh7_TEw/edit?tab=t.0" target="_blank" class="live-link">Read the Copy →</a></li>
+                </ul>
+            </div>
         </div>
     </section>
-    </div>
-    </div>
-    </section>
 
-    <footer id="contact" class="hidden-scale">
-        <div class="footer-content">
-            <h2>Stop Leaving Money on the Table.</h2>
-            <p>You have the offer. I have the system to sell it.</p>
-            <div class="footer-cta-wrapper">
-                <a href="https://calendly.com/preciousadekunle784" target="_blank"
-                    class="cta-button main-cta pulse-animation">
-                    Book Your Strategy Call
-                </a>
-            </div>
-            <footer style="text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem;">
-                <p>&copy; 2026 PRECIOUS PORTFOLIO. Built for high-flow conversion.</p>
+    <!-- FOOTER -->
+    <footer id="contact" class="site-footer hidden-scale">
+        <div class="footer-orb"></div>
+        <div class="footer-inner">
+            <div class="roadmap-pill">Ready to Scale?</div>
+            <h2>Stop Leaving Money<br>on the Table.</h2>
+            <p class="footer-sub">You have the offer. I have the system to sell it.</p>
+            <a href="https://calendly.com/preciousadekunle784" target="_blank"
+                class="cta-button main-cta pulse-animation">
+                Book Your Strategy Call
+            </a>
+            <p class="footer-copyright">© 2026 Precious Portfolio. Built for high-flow conversion.</p>
+        </div>
+    </footer>
 
-            </footer>
-
-            <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
