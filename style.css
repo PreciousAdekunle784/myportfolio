@@ -853,15 +853,6 @@ h3 {
     background: linear-gradient(to bottom, transparent, var(--border), transparent);
 }
 
-/* Analytics Responsive */
-@media (max-width: 768px) {
-    .comparison-grid { grid-template-columns: 1fr; }
-    .gauges-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .analytics-stats { flex-wrap: wrap; gap: 24px; }
-    .stat-divider { display: none; }
-    .bar-label { min-width: 70px; font-size: 0.65rem; }
-}
-
 /* --- 9. PROCESS SECTION --- */
 .process-section {
     background: linear-gradient(160deg, rgba(124,58,237,0.04) 0%, var(--bg) 50%);
@@ -1109,31 +1100,196 @@ h3 {
 .form-container .cta-button { width: 100%; margin-top: 10px; text-align: center; cursor: pointer; }
 
 /* --- 14. RESPONSIVE --- */
+
+/* --- Tablet (max 1024px) --- */
 @media (max-width: 1024px) {
-    .about-grid { grid-template-columns: 320px 1fr; gap: 50px; }
+    .about-grid {
+        grid-template-columns: 320px 1fr;
+        gap: 50px;
+    }
+    .gauges-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+    }
+    .analytics-stats {
+        gap: 28px;
+        padding: 28px 28px;
+    }
+    .stat-number {
+        font-size: 1.8rem;
+    }
 }
 
+/* --- Mobile (max 768px) --- */
 @media (max-width: 768px) {
+    /* Nav */
     .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .glass-nav { padding: 14px 5%; }
+    .nav-scrolled { padding: 10px 5%; }
 
-    .hero { padding: 130px 5% 70px; }
-    h1 { letter-spacing: -1.5px; }
+    /* Hero */
+    .hero {
+        padding: 120px 5% 60px;
+        min-height: 75vh;
+    }
+    h1 {
+        letter-spacing: -1.5px;
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+    }
+    .subheadline {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+    }
+    .hero-orb.orb-1 {
+        width: 350px;
+        height: 350px;
+    }
+    .hero-orb.orb-2 {
+        width: 180px;
+        height: 180px;
+    }
+    .cta-button {
+        padding: 14px 32px;
+        font-size: 0.82rem;
+    }
+    .scroll-hint {
+        bottom: 12px;
+    }
 
-    .ticker-wrap { transform: rotate(0deg) scale(1); }
+    /* Ticker */
+    .ticker-wrap {
+        transform: rotate(0deg) scale(1);
+        padding: 10px 0;
+    }
+    .ticker-item {
+        font-size: 0.9rem;
+        padding: 0 18px;
+    }
 
+    /* Section shared */
+    .about-section,
+    .services-section,
+    .process-section,
+    .portfolio-section {
+        padding: 80px 5%;
+    }
+    .analytics-section {
+        padding: 80px 5%;
+    }
+    .centered-header {
+        margin-bottom: 50px;
+    }
+    .centered-header p {
+        font-size: 0.92rem;
+    }
+    h2 {
+        font-size: clamp(1.7rem, 5vw, 2.4rem);
+    }
+
+    /* About */
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 50px;
     }
-    .about-photo-col { display: flex; justify-content: center; }
-    .photo-wrapper { max-width: 300px; }
-    .profile-photo { height: 360px; }
-    .about-stats-row { grid-template-columns: 1fr; }
+    .about-photo-col {
+        display: flex;
+        justify-content: center;
+    }
+    .photo-wrapper {
+        max-width: 280px;
+    }
+    .profile-photo {
+        height: 340px;
+        max-width: 280px;
+    }
+    .about-lead {
+        font-size: 1.15rem;
+        text-align: center;
+    }
+    .about-body {
+        font-size: 0.92rem;
+        text-align: center;
+    }
+    .about-stats-row {
+        grid-template-columns: 1fr;
+    }
 
-    .cards-grid { grid-template-columns: 1fr; }
-    .framework-grid { grid-template-columns: 1fr; }
+    /* Services */
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .service-card {
+        padding: 32px 24px;
+    }
+    .card-number {
+        font-size: 2.4rem;
+    }
+    .service-card h3 {
+        font-size: 1.1rem;
+    }
+    .service-card p {
+        font-size: 0.88rem;
+    }
 
-    .timeline-line { left: 20px; transform: none; }
+    /* Analytics */
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+    .gauges-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    .gauge-wrapper {
+        width: 110px;
+        height: 110px;
+    }
+    .gauge-number {
+        font-size: 1.3rem;
+    }
+    .gauge-card h4 {
+        font-size: 0.82rem;
+    }
+    .gauge-sub {
+        font-size: 0.7rem;
+    }
+    .analytics-stats {
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 24px 20px;
+    }
+    .stat-divider {
+        display: none;
+    }
+    .analytics-stats .analytics-stat {
+        flex-basis: 40%;
+    }
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    .stat-label {
+        font-size: 0.68rem;
+    }
+    .bar-label {
+        min-width: 70px;
+        font-size: 0.65rem;
+    }
+    .bar-track {
+        height: 28px;
+    }
+    .bar-value {
+        font-size: 0.65rem;
+    }
+    .toggle-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+    }
+
+    /* Process Timeline */
+    .timeline-line {
+        left: 20px;
+        transform: none;
+    }
     .timeline-item,
     .timeline-item.right {
         width: 100%;
@@ -1141,11 +1297,195 @@ h3 {
         padding-left: 50px;
         padding-right: 0;
         text-align: left;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+    }
+    .timeline-content {
+        padding: 24px 20px;
+    }
+    .timeline-content h3 {
+        font-size: 1.05rem;
+    }
+    .timeline-content p {
+        font-size: 0.85rem;
     }
 
-    .form-grid { grid-template-columns: 1fr; }
-    .form-container { padding: 30px 20px; }
+    /* Portfolio / Framework Cards */
+    .framework-grid {
+        grid-template-columns: 1fr;
+    }
+    .framework-card:last-child:nth-child(odd) {
+        max-width: none;
+    }
+    .framework-card {
+        padding: 28px 22px;
+    }
+    .framework-card h3 {
+        font-size: 1.05rem;
+    }
+    .framework-card p {
+        font-size: 0.85rem;
+    }
+    .framework-list li {
+        font-size: 0.82rem;
+    }
+
+    /* Footer */
+    .site-footer {
+        padding: 80px 5% 48px;
+        min-height: 40vh;
+    }
+    .footer-inner h2 {
+        font-size: clamp(1.7rem, 6vw, 2.8rem);
+    }
+    .footer-sub {
+        font-size: 0.92rem;
+        margin-bottom: 28px;
+    }
+    .footer-copyright {
+        margin-top: 36px;
+        font-size: 0.7rem;
+    }
+
+    /* Apply Page */
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-container {
+        padding: 30px 20px;
+        width: 92%;
+    }
+    .apply-container {
+        padding-top: 140px;
+    }
+}
+
+/* --- Small Mobile (max 480px) --- */
+@media (max-width: 480px) {
+    /* Hero */
+    .hero {
+        padding: 110px 4% 50px;
+        min-height: 70vh;
+    }
+    h1 {
+        font-size: clamp(1.8rem, 9vw, 2.8rem);
+        letter-spacing: -1px;
+    }
+    .subheadline {
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+    .pill {
+        font-size: 0.65rem;
+        padding: 6px 14px;
+    }
+    .cta-button {
+        padding: 13px 28px;
+        font-size: 0.78rem;
+    }
+    .micro-copy {
+        font-size: 0.67rem;
+    }
+
+    /* About */
+    .photo-wrapper {
+        max-width: 240px;
+    }
+    .profile-photo {
+        height: 300px;
+        max-width: 240px;
+    }
+    .about-lead {
+        font-size: 1.05rem;
+    }
+    .about-body {
+        font-size: 0.88rem;
+    }
+    .stat-card {
+        padding: 16px 14px;
+    }
+    .stat-card h4 {
+        font-size: 0.65rem;
+    }
+    .stat-card p {
+        font-size: 0.8rem;
+    }
+
+    /* Services */
+    .service-card {
+        padding: 28px 20px;
+    }
+    .card-number {
+        font-size: 2rem;
+    }
+
+    /* Analytics */
+    .gauges-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    .gauge-wrapper {
+        width: 95px;
+        height: 95px;
+    }
+    .gauge-number {
+        font-size: 1.1rem;
+    }
+    .analytics-stats {
+        padding: 20px 16px;
+        gap: 16px;
+    }
+    .stat-number {
+        font-size: 1.4rem;
+    }
+    .comparison-card {
+        padding: 22px 18px;
+    }
+    .bar-label {
+        min-width: 58px;
+        font-size: 0.6rem;
+    }
+
+    /* Process */
+    .timeline-content {
+        padding: 20px 16px;
+    }
+
+    /* Portfolio */
+    .framework-card {
+        padding: 24px 18px;
+    }
+
+    /* Footer */
+    .site-footer {
+        padding: 64px 4% 40px;
+    }
+    .footer-inner h2 {
+        font-size: clamp(1.5rem, 7vw, 2.2rem);
+    }
+    .footer-sub {
+        font-size: 0.85rem;
+    }
+    .roadmap-pill {
+        font-size: 0.65rem;
+        padding: 5px 13px;
+    }
+
+    /* Apply */
+    .form-container {
+        padding: 24px 16px;
+    }
+    .apply-container {
+        padding-top: 120px;
+    }
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+        padding: 12px;
+        font-size: 0.92rem;
+    }
+    .input-group label {
+        font-size: 0.75rem;
+    }
 }
 
 /* ============================================
