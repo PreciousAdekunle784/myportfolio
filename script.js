@@ -264,15 +264,49 @@ document.querySelectorAll('.cta-button').forEach(btn => {
     });
 });
 
-// 13. Mobile menu toggle
+// 13. Mobile menu toggle with enhanced functionality
 const navLinks = document.querySelector('.nav-links');
 const menuToggle = document.querySelector('.menu-toggle');
+const navLinksItems = document.querySelectorAll('.nav-links a');
+
+function closeMenu() {
+    if (navLinks && menuToggle) {
+        navLinks.classList.remove('nav-open');
+        menuToggle.classList.remove('menu-active');
+    }
+}
+
 if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         navLinks.classList.toggle('nav-open');
         menuToggle.classList.toggle('menu-active');
     });
 }
+
+// Close menu when clicking on a nav link
+navLinksItems.forEach(link => {
+    link.addEventListener('click', () => {
+        closeMenu();
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    const isNavArea = navLinks?.contains(e.target);
+    const isToggle = menuToggle?.contains(e.target);
+    
+    if (!isNavArea && !isToggle && navLinks?.classList.contains('nav-open')) {
+        closeMenu();
+    }
+});
+
+// Close menu on resize to desktop
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        closeMenu();
+    }
+});
 
 // ============================================
 // 14. ANALYTICS — Bar Chart Animations
