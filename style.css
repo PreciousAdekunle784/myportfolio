@@ -1138,7 +1138,6 @@ h3 {
     .nav-links a {
         font-size: 0.95rem;
     }
-}
     .about-grid {
         grid-template-columns: 320px 1fr;
         gap: 50px;
