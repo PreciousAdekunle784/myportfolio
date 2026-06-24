@@ -17,6 +17,23 @@
 
 <body>
 
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">Precious<span class="dot">.</span></div>
+            <div class="preloader-tagline">The Funnel Architect</div>
+            <div class="preloader-bar-track">
+                <div class="preloader-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE PARTICLE CANVAS -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- FILM GRAIN OVERLAY -->
+    <div id="noise-overlay"></div>
+
     <div id="spotlight"></div>
 
     <!-- NAVIGATION -->
@@ -36,6 +53,12 @@
 
     <!-- HERO -->
     <header class="hero">
+        <div class="hero-video-wrapper">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="hero-bg.mp4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
         <div class="hero-orb orb-1"></div>
         <div class="hero-orb orb-2"></div>
         <div class="hero-content hero-load">
@@ -54,6 +77,7 @@
                 <a href="apply.html" class="cta-button main-cta pulse-animation">Start Your Project</a>
                 <p class="micro-copy">No generic templates. Custom strategy only.</p>
             </div>
+            <a href="#about" class="scroll-hint" aria-label="Scroll to about"></a>
         </div>
     </header>
 
@@ -94,12 +118,12 @@
 
             <!-- Text -->
             <div class="about-text-col hidden-right">
-                <p class="about-lead">
+                <p class="about-lead" data-highlight>
                     I'm Precious, a Hydrology student and digital creator dedicated to engineering high-converting sales
                     ecosystems.
                 </p>
                 <p class="about-body">
-                    My background in Hydrology gives me a unique perspective on <strong>fluid dynamics</strong> — which
+                    My background in Hydrology gives me a unique perspective on <strong>fluid dynamics</strong> which
                     I apply to digital marketing by ensuring your lead flow is seamless, directed, and free of "leaks."
                 </p>
                 <p class="about-body">
@@ -464,12 +488,15 @@
                 <span class="step-tag">Case Study 03</span>
                 <h3>Real Estate Brand Platform</h3>
                 <div class="framework-meta">Client: Lattes &amp; Leases</div>
-                <p>Engineered a full-scale brand ecosystem for a real estate investor — including course sales pages, resource hubs, lead magnets, and a multi-page funnel turning cold traffic into enrolled students.</p>
+                <p>Engineered a full-scale brand ecosystem for a real estate investor — including course sales pages,
+                    resource hubs, lead magnets, and a multi-page funnel turning cold traffic into enrolled students.
+                </p>
                 <ul class="framework-list">
                     <li>Multi-Page Funnel Architecture</li>
                     <li>Course &amp; Resource Hub Design</li>
                     <li>Lead Magnet Integration</li>
-                    <li><a href="https://lattes-and-leases.vercel.app/" target="_blank" class="live-link">View Live Project →</a></li>
+                    <li><a href="https://lattes-and-leases.vercel.app/" target="_blank" class="live-link">View Live
+                            Project →</a></li>
                 </ul>
             </div>
             <div class="framework-card hidden-up delay-200">
@@ -490,12 +517,14 @@
                 <span class="step-tag">Copywriting Asset</span>
                 <h3>Revenue-Scaling Ads Copy</h3>
                 <div class="framework-meta">Client: Wander Coaching Academy</div>
-                <p>A direct-response ad targeting business owners stuck at a revenue plateau — using social proof, data-driven results (42% revenue increase), and a clear CTA to drive coaching enrollments.</p>
+                <p>A direct-response ad targeting business owners stuck at a revenue plateau — using social proof,
+                    data-driven results (42% revenue increase), and a clear CTA to drive coaching enrollments.</p>
                 <ul class="framework-list">
                     <li>Pain-Point Agitation &amp; Solution</li>
                     <li>Social Proof with Real Metrics</li>
                     <li>Clear Call-to-Action Framework</li>
-                    <li><a href="https://docs.google.com/document/d/1z0X1Ofdkb7FUKYmB0TJ6tGqhbj5YC99PBTIFdh7_TEw/edit?tab=t.0" target="_blank" class="live-link">Read the Copy →</a></li>
+                    <li><a href="https://docs.google.com/document/d/1z0X1Ofdkb7FUKYmB0TJ6tGqhbj5YC99PBTIFdh7_TEw/edit?tab=t.0"
+                            target="_blank" class="live-link">Read the Copy →</a></li>
                 </ul>
             </div>
         </div>
@@ -503,10 +532,16 @@
 
     <!-- FOOTER -->
     <footer id="contact" class="site-footer hidden-scale">
+        <div class="footer-video-wrapper">
+            <video class="footer-video" autoplay muted loop playsinline>
+                <source src="hero-bg.mp4" type="video/mp4">
+            </video>
+            <div class="footer-video-overlay"></div>
+        </div>
         <div class="footer-orb"></div>
         <div class="footer-inner">
             <div class="roadmap-pill">Ready to Scale?</div>
-            <h2>Stop Leaving Money<br>on the Table.</h2>
+            <h2>Stop Leaving Money<br> on the Table.</h2>
             <p class="footer-sub">You have the offer. I have the system to sell it.</p>
             <a href="https://calendly.com/preciousadekunle784" target="_blank"
                 class="cta-button main-cta pulse-animation">

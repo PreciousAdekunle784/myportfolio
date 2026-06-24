@@ -398,3 +398,280 @@ function initAnalyticsToggle() {
     });
 }
 initAnalyticsToggle();
+
+// ============================================
+// WOW FEATURES — NEXT-LEVEL INTERACTIONS
+// ============================================
+
+// 18. PRELOADER
+(function initPreloader() {
+    document.body.classList.add('loading');
+    const preloader = document.getElementById('preloader');
+    const barFill = document.querySelector('.preloader-bar-fill');
+    if (!preloader || !barFill) return;
+
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 15 + 5;
+        if (progress > 90) progress = 90;
+        barFill.style.width = progress + '%';
+    }, 150);
+
+    window.addEventListener('load', () => {
+        clearInterval(interval);
+        barFill.style.width = '100%';
+
+        setTimeout(() => {
+            preloader.classList.add('preloader-done');
+            document.body.classList.remove('loading');
+        }, 600);
+
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 2200);
+    });
+})();
+
+
+// 19. INTERACTIVE PARTICLE NETWORK
+(function initParticles() {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let w, h;
+    let mouseX = -1000, mouseY = -1000;
+    const PARTICLE_COUNT = 70;
+    const CONNECTION_DIST = 140;
+    const MOUSE_RADIUS = 180;
+    const particles = [];
+
+    function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * w;
+            this.y = Math.random() * h;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 1.5 + 0.5;
+            this.baseAlpha = Math.random() * 0.4 + 0.1;
+        }
+
+        update() {
+            // Mouse repulsion
+            const dx = this.x - mouseX;
+            const dy = this.y - mouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < MOUSE_RADIUS) {
+                const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
+                this.vx += (dx / dist) * force * 0.6;
+                this.vy += (dy / dist) * force * 0.6;
+            }
+
+            // Damping
+            this.vx *= 0.98;
+            this.vy *= 0.98;
+
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Wrap
+            if (this.x < 0) this.x = w;
+            if (this.x > w) this.x = 0;
+            if (this.y < 0) this.y = h;
+            if (this.y > h) this.y = 0;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(167, 139, 250, ${this.baseAlpha})`;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new Particle());
+    }
+
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < CONNECTION_DIST) {
+                    const alpha = (1 - dist / CONNECTION_DIST) * 0.15;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(167, 139, 250, ${alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Mouse connections
+        particles.forEach(p => {
+            const dx = p.x - mouseX;
+            const dy = p.y - mouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < MOUSE_RADIUS) {
+                const alpha = (1 - dist / MOUSE_RADIUS) * 0.25;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(mouseX, mouseY);
+                ctx.strokeStyle = `rgba(167, 139, 250, ${alpha})`;
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+            }
+        });
+    }
+
+    function loop() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => { p.update(); p.draw(); });
+        drawConnections();
+        requestAnimationFrame(loop);
+    }
+    loop();
+})();
+
+
+// 20. TEXT SCRAMBLE / DECODE EFFECT on Section Headings
+(function initTextScramble() {
+    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    function scrambleElement(el) {
+        const original = el.textContent;
+        const length = original.length;
+        let iteration = 0;
+        const totalIterations = length * 2;
+        const speed = 30;
+
+        el.style.visibility = 'visible';
+
+        const timer = setInterval(() => {
+            el.textContent = original
+                .split('')
+                .map((char, i) => {
+                    if (char === ' ') return ' ';
+                    if (i < iteration / 2) return original[i];
+                    return chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join('');
+
+            iteration++;
+            if (iteration >= totalIterations) {
+                el.textContent = original;
+                clearInterval(timer);
+            }
+        }, speed);
+    }
+
+    // Observe all section h2s (not the hero h1)
+    const headings = document.querySelectorAll(
+        '.about-section h2, .services-section h2, .analytics-section h2, .process-section h2, .portfolio-section h2, .site-footer h2'
+    );
+
+    const scrambleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => scrambleElement(entry.target), 200);
+                scrambleObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.6 });
+
+    headings.forEach(h => scrambleObserver.observe(h));
+})();
+
+
+// 21. SCROLL-DRIVEN TEXT HIGHLIGHTING
+(function initScrollHighlight() {
+    const elements = document.querySelectorAll('[data-highlight]');
+
+    elements.forEach(el => {
+        const text = el.textContent.trim();
+        const words = text.split(/\s+/);
+        el.innerHTML = words
+            .map(word => `<span class="highlight-word">${word}</span>`)
+            .join(' ');
+    });
+
+    function updateHighlights() {
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const viewH = window.innerHeight;
+            // Progress from 0 to 1 as element scrolls through viewport
+            const progress = Math.max(0, Math.min(1,
+                (viewH - rect.top) / (viewH + rect.height)
+            ));
+
+            const wordEls = el.querySelectorAll('.highlight-word');
+            const total = wordEls.length;
+            const litCount = Math.floor(progress * total * 1.8); // 1.8x multiplier so it completes before leaving view
+
+            wordEls.forEach((w, i) => {
+                if (i < litCount) {
+                    w.classList.add('lit');
+                } else {
+                    w.classList.remove('lit');
+                }
+            });
+        });
+    }
+
+    window.addEventListener('scroll', updateHighlights, { passive: true });
+    updateHighlights();
+})();
+
+
+// 22. CARD BORDER GLOW TRAIL
+(function initBorderGlow() {
+    const cards = document.querySelectorAll('.service-card, .framework-card');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--glow-x', x + 'px');
+            card.style.setProperty('--glow-y', y + 'px');
+        });
+    });
+})();
+
+
+// 23. SMOOTH COUNTER EASING (enhanced version)
+// Already have counters — this adds an elastic easing variant
+(function enhanceCounters() {
+    // Add a subtle scale pop when counters finish
+    document.querySelectorAll('.stat-number, .gauge-number').forEach(el => {
+        const origObserver = new MutationObserver((mutations) => {
+            mutations.forEach(m => {
+                if (el.textContent.includes(el.dataset.count)) {
+                    el.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    el.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        el.style.transform = 'scale(1)';
+                    }, 300);
+                    origObserver.disconnect();
+                }
+            });
+        });
+        origObserver.observe(el, { childList: true, characterData: true, subtree: true });
+    });
+})();
