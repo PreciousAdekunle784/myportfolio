@@ -22,7 +22,7 @@ document.addEventListener('mousemove', (e) => {
     const spotlight = document.getElementById('spotlight');
     if (spotlight) {
         spotlight.style.opacity = '1';
-        spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(124, 58, 237, 0.08), transparent 40%)`;
+        spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(16, 185, 129, 0.08), transparent 40%)`;
     }
 });
 
@@ -78,6 +78,7 @@ document.querySelectorAll('.hero .gradient-text').forEach(el => splitText(el));
 
 // 4. 3D Tilt Effect on Cards
 function initTilt() {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     const cards = document.querySelectorAll('.service-card, .framework-card, .stat-card, .timeline-content');
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -93,7 +94,7 @@ function initTilt() {
 
             // Dynamic shine
             const shine = card.querySelector('.card-shine') || createShine(card);
-            shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(167,139,250,0.15) 0%, transparent 60%)`;
+            shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(16, 185, 129, 0.15) 0%, transparent 60%)`;
         });
 
         card.addEventListener('mouseleave', () => {
@@ -121,21 +122,23 @@ function createShine(card) {
 initTilt();
 
 // 5. Magnetic Buttons
-document.querySelectorAll('.cta-button').forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.05)`;
+if (!window.matchMedia("(pointer: coarse)").matches) {
+    document.querySelectorAll('.cta-button').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.05)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0) scale(1)';
+            btn.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+        });
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transition = 'none';
+        });
     });
-    btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0, 0) scale(1)';
-        btn.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-    });
-    btn.addEventListener('mouseenter', () => {
-        btn.style.transition = 'none';
-    });
-});
+}
 
 // 6. Parallax Orbs on Scroll
 function parallaxOrbs() {
@@ -273,14 +276,16 @@ function closeMenu() {
     if (navLinks && menuToggle) {
         navLinks.classList.remove('nav-open');
         menuToggle.classList.remove('menu-active');
+        document.body.style.overflow = '';
     }
 }
 
 if (menuToggle) {
     menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        navLinks.classList.toggle('nav-open');
+        const isOpen = navLinks.classList.toggle('nav-open');
         menuToggle.classList.toggle('menu-active');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 }
 
@@ -530,7 +535,7 @@ initAnalyticsToggle();
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(167, 139, 250, ${this.baseAlpha})`;
+            ctx.fillStyle = `rgba(16, 185, 129, ${this.baseAlpha})`;
             ctx.fill();
         }
     }
@@ -550,7 +555,7 @@ initAnalyticsToggle();
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(167, 139, 250, ${alpha})`;
+                    ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
                     ctx.lineWidth = 0.5;
                     ctx.stroke();
                 }
@@ -567,7 +572,7 @@ initAnalyticsToggle();
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(mouseX, mouseY);
-                ctx.strokeStyle = `rgba(167, 139, 250, ${alpha})`;
+                ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
                 ctx.lineWidth = 0.8;
                 ctx.stroke();
             }
