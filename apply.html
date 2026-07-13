@@ -64,8 +64,12 @@
 
     <nav class="glass-nav">
         <div class="logo">PRECIOUS<span class="dot">.</span></div>
-        <div class="nav-links">
-            <a href="index.html" class="social-icon">← Back to Portfolio</a>
+        <div class="nav-links" id="applyNavLinks">
+            <a href="index.html">← Back to Portfolio</a>
+            <a href="https://calendly.com/preciousadekunle784" target="_blank" class="cta-button nav-cta">Book a Call</a>
+        </div>
+        <div class="menu-toggle" id="applyMenuToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
         </div>
     </nav>
 
@@ -144,6 +148,23 @@
         document.querySelectorAll('.reveal').forEach((el) => {
             observer.observe(el);
         });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('applyMenuToggle');
+        const navLinks = document.getElementById('applyNavLinks');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('menu-active');
+                navLinks.classList.toggle('nav-open');
+            });
+            // Close menu when a link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('menu-active');
+                    navLinks.classList.remove('nav-open');
+                });
+            });
+        }
     </script>
 
 </body>

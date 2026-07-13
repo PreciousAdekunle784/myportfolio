@@ -36,6 +36,9 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     cursor: none;
+    /* Safe area insets for notched/punch-hole phones */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
 
 a {
@@ -69,6 +72,9 @@ a {
     background: rgba(6, 6, 8, 0.6);
     border-bottom: 1px solid var(--border);
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Safe area support for notched phones */
+    padding-left: max(6%, env(safe-area-inset-left));
+    padding-right: max(6%, env(safe-area-inset-right));
 }
 
 .nav-scrolled {
@@ -1473,6 +1479,8 @@ h3 {
     /* Nav */
     .glass-nav {
         padding: 14px 5%;
+        padding-left: max(5%, env(safe-area-inset-left));
+        padding-right: max(5%, env(safe-area-inset-right));
     }
 
     .nav-scrolled {
@@ -1481,38 +1489,47 @@ h3 {
 
     /* Hero */
     .hero {
-        padding: 60px 5% 40px;
-        min-height: 100vh;
+        padding: 70px 5% 60px;
+        min-height: 100svh; /* svh for mobile browsers with toolbar */
     }
 
     h1 {
         letter-spacing: -1.5px;
-        font-size: clamp(1.8rem, 7vw, 3.5rem);
+        font-size: clamp(2rem, 8vw, 3.5rem);
         margin-bottom: 20px;
+        line-height: 1.05;
     }
 
     .subheadline {
         font-size: 0.95rem;
         margin-bottom: 28px;
+        padding: 0 4px;
     }
 
     .hero-orb.orb-1 {
-        width: 350px;
-        height: 350px;
+        width: 300px;
+        height: 300px;
     }
 
     .hero-orb.orb-2 {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
     }
 
+    /* Larger touch targets for mobile */
     .cta-button {
-        padding: 14px 32px;
-        font-size: 0.82rem;
+        padding: 16px 32px;
+        font-size: 0.85rem;
+        min-height: 52px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .scroll-hint {
-        bottom: 20px;
+        bottom: 24px;
+        width: 44px;
+        height: 44px;
     }
 
     /* Ticker */
@@ -1539,7 +1556,7 @@ h3 {
     }
 
     .centered-header {
-        margin-bottom: 50px;
+        margin-bottom: 48px;
     }
 
     .centered-header p {
@@ -1547,13 +1564,13 @@ h3 {
     }
 
     h2 {
-        font-size: clamp(1.7rem, 5vw, 2.4rem);
+        font-size: clamp(1.7rem, 5.5vw, 2.4rem);
     }
 
     /* About */
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 44px;
     }
 
     .about-photo-col {
@@ -1570,18 +1587,23 @@ h3 {
         max-width: 280px;
     }
 
+    .about-text-col {
+        text-align: center;
+    }
+
     .about-lead {
         font-size: 1.15rem;
         text-align: center;
     }
 
     .about-body {
-        font-size: 0.92rem;
+        font-size: 0.95rem;
         text-align: center;
     }
 
     .about-stats-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
     }
 
     /* Services */
@@ -1602,7 +1624,7 @@ h3 {
     }
 
     .service-card p {
-        font-size: 0.88rem;
+        font-size: 0.9rem;
     }
 
     /* Analytics */
@@ -1610,9 +1632,15 @@ h3 {
         grid-template-columns: 1fr;
     }
 
+    .analytics-toggle {
+        width: 100%;
+        max-width: 340px;
+    }
+
     .gauges-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 24px;
+        max-width: 100%;
     }
 
     .gauge-wrapper {
@@ -1630,12 +1658,15 @@ h3 {
 
     .gauge-sub {
         font-size: 0.7rem;
+        max-width: 120px;
     }
 
     .analytics-stats {
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 20px;
         padding: 24px 20px;
+        margin-top: 40px;
     }
 
     .stat-divider {
@@ -1643,7 +1674,7 @@ h3 {
     }
 
     .analytics-stats .analytics-stat {
-        flex-basis: 40%;
+        flex-basis: auto;
     }
 
     .stat-number {
@@ -1655,7 +1686,7 @@ h3 {
     }
 
     .bar-label {
-        min-width: 70px;
+        min-width: 72px;
         font-size: 0.65rem;
     }
 
@@ -1668,8 +1699,9 @@ h3 {
     }
 
     .toggle-btn {
-        padding: 8px 16px;
-        font-size: 0.75rem;
+        padding: 10px 16px;
+        font-size: 0.78rem;
+        min-height: 44px; /* accessible touch target */
     }
 
     /* Process Timeline */
@@ -1697,7 +1729,7 @@ h3 {
     }
 
     .timeline-content p {
-        font-size: 0.85rem;
+        font-size: 0.88rem;
     }
 
     /* Portfolio / Framework Cards */
@@ -1718,17 +1750,25 @@ h3 {
     }
 
     .framework-card p {
-        font-size: 0.85rem;
+        font-size: 0.88rem;
     }
 
     .framework-list li {
-        font-size: 0.82rem;
+        font-size: 0.85rem;
+        /* Larger tap area for links */
+        padding-bottom: 2px;
+    }
+
+    .live-link {
+        display: inline-block;
+        padding: 4px 0;
     }
 
     /* Footer */
     .site-footer {
         padding: 80px 5% 48px;
-        min-height: 40vh;
+        padding-bottom: max(48px, env(safe-area-inset-bottom));
+        min-height: auto;
     }
 
     .footer-inner h2 {
@@ -1736,13 +1776,13 @@ h3 {
     }
 
     .footer-sub {
-        font-size: 0.92rem;
+        font-size: 0.95rem;
         margin-bottom: 28px;
     }
 
     .footer-copyright {
         margin-top: 36px;
-        font-size: 0.7rem;
+        font-size: 0.72rem;
     }
 
     /* Apply Page */
@@ -1767,20 +1807,22 @@ h3 {
     }
 
     .input-group label {
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         margin-bottom: 10px;
     }
 
     .input-group input,
     .input-group select,
     .input-group textarea {
-        padding: 14px 12px;
-        font-size: 1rem;
-        border-radius: 8px;
+        padding: 15px 14px;
+        font-size: 1rem; /* Prevents iOS zoom on focus */
+        border-radius: 10px;
+        min-height: 52px;
     }
 
     .input-group textarea {
         min-height: 150px;
+        min-height: unset;
     }
 
     .full-height textarea {
@@ -1788,9 +1830,10 @@ h3 {
     }
 
     .form-container .cta-button {
-        padding: 14px 28px;
-        font-size: 0.88rem;
+        padding: 16px 28px;
+        font-size: 0.9rem;
         width: 100%;
+        min-height: 54px;
     }
 }
 
@@ -1799,33 +1842,37 @@ h3 {
 
     /* Hero */
     .hero {
-        padding: 55px 4% 35px;
-        min-height: 100vh;
+        padding: 65px 4% 50px;
+        min-height: 100svh;
     }
 
     h1 {
-        font-size: clamp(1.6rem, 8vw, 2.8rem);
+        font-size: clamp(1.85rem, 9vw, 2.8rem);
         letter-spacing: -1px;
         margin-bottom: 18px;
+        line-height: 1.08;
     }
 
     .subheadline {
-        font-size: 0.88rem;
-        line-height: 1.6;
+        font-size: 0.9rem;
+        line-height: 1.65;
+        padding: 0 2px;
     }
 
     .pill {
         font-size: 0.65rem;
         padding: 6px 14px;
+        letter-spacing: 0.8px;
     }
 
     .cta-button {
-        padding: 13px 28px;
-        font-size: 0.78rem;
+        padding: 15px 28px;
+        font-size: 0.82rem;
+        min-height: 52px;
     }
 
     .micro-copy {
-        font-size: 0.67rem;
+        font-size: 0.68rem;
     }
 
     /* About */
@@ -1843,7 +1890,13 @@ h3 {
     }
 
     .about-body {
-        font-size: 0.88rem;
+        font-size: 0.9rem;
+    }
+
+    /* Stack stat cards on very small screens */
+    .about-stats-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 
     .stat-card {
@@ -1855,7 +1908,7 @@ h3 {
     }
 
     .stat-card p {
-        font-size: 0.8rem;
+        font-size: 0.82rem;
     }
 
     /* Services */
@@ -1870,12 +1923,12 @@ h3 {
     /* Analytics */
     .gauges-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        gap: 18px;
     }
 
     .gauge-wrapper {
-        width: 95px;
-        height: 95px;
+        width: 90px;
+        height: 90px;
     }
 
     .gauge-number {
@@ -1884,7 +1937,7 @@ h3 {
 
     .analytics-stats {
         padding: 20px 16px;
-        gap: 16px;
+        gap: 14px;
     }
 
     .stat-number {
@@ -1895,14 +1948,31 @@ h3 {
         padding: 22px 18px;
     }
 
+    .bar-row {
+        gap: 8px;
+    }
+
     .bar-label {
-        min-width: 58px;
+        min-width: 56px;
         font-size: 0.6rem;
     }
 
     /* Process */
+    .timeline-item,
+    .timeline-item.right {
+        padding-left: 44px;
+    }
+
     .timeline-content {
         padding: 20px 16px;
+    }
+
+    .timeline-content h3 {
+        font-size: 1rem;
+    }
+
+    .step-tag {
+        font-size: 0.65rem;
     }
 
     /* Portfolio */
@@ -1910,9 +1980,14 @@ h3 {
         padding: 24px 18px;
     }
 
+    .framework-list li {
+        font-size: 0.82rem;
+    }
+
     /* Footer */
     .site-footer {
         padding: 64px 4% 40px;
+        padding-bottom: max(40px, env(safe-area-inset-bottom));
     }
 
     .footer-inner h2 {
@@ -1920,7 +1995,7 @@ h3 {
     }
 
     .footer-sub {
-        font-size: 0.85rem;
+        font-size: 0.88rem;
     }
 
     .roadmap-pill {
@@ -1932,6 +2007,7 @@ h3 {
     .form-container {
         padding: 24px 16px;
         border-radius: 18px;
+        width: 94%;
     }
 
     .apply-container {
@@ -1946,13 +2022,13 @@ h3 {
     .input-group input,
     .input-group select,
     .input-group textarea {
-        padding: 13px 11px;
-        font-size: 1rem;
-        border-radius: 8px;
+        padding: 14px 12px;
+        font-size: 1rem; /* Prevents iOS zoom */
+        border-radius: 10px;
     }
 
     .input-group label {
-        font-size: 0.73rem;
+        font-size: 0.75rem;
         margin-bottom: 8px;
     }
 
@@ -2553,38 +2629,45 @@ body.loading {
 }
 
 /* ============================================
-   MOBILE MENU Z-INDEX FIX
-   Replace the @media (max-width: 768px) nav-links section with this
+   EXTRA SMALL SCREENS (max 360px)
    ============================================ */
-
-@media (max-width: 768px) {
-    /* ... other styles ... */
-
-    .nav-links {
-        display: flex;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding-top: 100px;
-        gap: 28px;
-        background: rgba(6, 6, 8, 0.98);
-        backdrop-filter: blur(32px);
-        -webkit-backdrop-filter: blur(32px);
-        transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        z-index: 1000;
-        /* CHANGED FROM 99 TO 1000 - THIS WAS THE BUG */
-        overflow-y: auto;
-        border-left: 1px solid rgba(255, 255, 255, 0.05);
+@media (max-width: 360px) {
+    h1 {
+        font-size: clamp(1.65rem, 10vw, 2.4rem);
     }
 
-    .nav-links.nav-open {
-        right: 0;
+    .hero {
+        padding: 65px 3.5% 50px;
     }
 
-    /* ... rest of mobile styles ... */
+    .about-section,
+    .services-section,
+    .analytics-section,
+    .process-section,
+    .portfolio-section {
+        padding: 80px 4% 50px;
+    }
+
+    .gauges-grid {
+        gap: 14px;
+    }
+
+    .gauge-wrapper {
+        width: 80px;
+        height: 80px;
+    }
+
+    .gauge-number {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        font-size: 0.78rem;
+        padding: 14px 22px;
+    }
+
+    .framework-card,
+    .service-card {
+        padding: 22px 16px;
+    }
 }
