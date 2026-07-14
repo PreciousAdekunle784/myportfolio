@@ -1,717 +1,225 @@
-// ============================================
-// PRECIOUS PORTFOLIO — NEXT-GEN INTERACTIONS
-// ============================================
-
-// 1. Custom Cursor
-const cursor = document.createElement('div');
-cursor.id = 'custom-cursor';
-const cursorDot = document.createElement('div');
-cursorDot.id = 'cursor-dot';
-document.body.appendChild(cursor);
-document.body.appendChild(cursorDot);
-
-let cursorX = 0, cursorY = 0, dotX = 0, dotY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    cursorX = e.clientX;
-    cursorY = e.clientY;
-    cursorDot.style.left = cursorX + 'px';
-    cursorDot.style.top = cursorY + 'px';
-
-    // Spotlight
-    const spotlight = document.getElementById('spotlight');
-    if (spotlight) {
-        spotlight.style.opacity = '1';
-        spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(16, 185, 129, 0.08), transparent 40%)`;
-    }
+document.addEventListener("DOMContentLoaded",()=>{
+/* ── INTAKE MODAL ─────────────────────────────── */
+const overlay=document.getElementById('intake-overlay');
+const progressBar=document.getElementById('intake-progress');
+const closeBtn=document.getElementById('intake-close');
+const steps={email:0,1:20,2:40,3:60,4:80,done:100};
+function showStep(id){
+  document.querySelectorAll('.intake-step').forEach(s=>s.classList.remove('active'));
+  const target=document.querySelector(`.intake-step[data-step="${id}"]`);
+  if(target)target.classList.add('active');
+  progressBar.style.width=(steps[id]!==undefined?steps[id]:100)+'%';
+}
+function openModal(){overlay.classList.add('open');showStep('email');document.body.style.overflow='hidden';}
+function closeModal(){overlay.classList.remove('open');document.body.style.overflow='';}
+// Intercept all Calendly CTA links except the final done-step one
+document.querySelectorAll('a[href*="calendly"]').forEach(link=>{
+  if(link.classList.contains('intake-calendly'))return;
+  link.addEventListener('click',e=>{e.preventDefault();openModal();});
 });
-
-function animateCursor() {
-    dotX += (cursorX - dotX) * 0.15;
-    dotY += (cursorY - dotY) * 0.15;
-    cursor.style.left = dotX + 'px';
-    cursor.style.top = dotY + 'px';
-    requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-// Cursor states on interactive elements
-document.querySelectorAll('a, button, .cta-button, .service-card, .framework-card').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.classList.add('cursor-hover');
-        cursorDot.classList.add('dot-hover');
-    });
-    el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('cursor-hover');
-        cursorDot.classList.remove('dot-hover');
-    });
-});
-
-// 2. Scroll Progress Bar
-const progressBar = document.createElement('div');
-progressBar.id = 'scroll-progress';
-document.body.appendChild(progressBar);
-
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-    progressBar.style.width = scrollPercent + '%';
-});
-
-// 3. Split Text Hero Animation
-function splitText(element) {
-    const text = element.textContent;
-    element.innerHTML = '';
-    element.setAttribute('aria-label', text);
-    text.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.classList.add('split-char');
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.animationDelay = `${0.6 + i * 0.03}s`;
-        element.appendChild(span);
-    });
-}
-
-// Apply to gradient-text elements in hero
-document.querySelectorAll('.hero .gradient-text').forEach(el => splitText(el));
-
-// 4. 3D Tilt Effect on Cards
-function initTilt() {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    const cards = document.querySelectorAll('.service-card, .framework-card, .stat-card, .timeline-content');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / centerY * -8;
-            const rotateY = (x - centerX) / centerX * 8;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-            // Dynamic shine
-            const shine = card.querySelector('.card-shine') || createShine(card);
-            shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(16, 185, 129, 0.15) 0%, transparent 60%)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-            card.style.transition = 'transform 0.5s ease';
-            const shine = card.querySelector('.card-shine');
-            if (shine) shine.style.background = 'transparent';
-        });
-
-        card.addEventListener('mouseenter', () => {
-            card.style.transition = 'none';
-        });
-    });
-}
-
-function createShine(card) {
-    const shine = document.createElement('div');
-    shine.classList.add('card-shine');
-    card.style.position = 'relative';
-    card.style.overflow = 'hidden';
-    card.appendChild(shine);
-    return shine;
-}
-
-initTilt();
-
-// 5. Magnetic Buttons
-if (!window.matchMedia("(pointer: coarse)").matches) {
-    document.querySelectorAll('.cta-button').forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.05)`;
-        });
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0) scale(1)';
-            btn.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-        });
-        btn.addEventListener('mouseenter', () => {
-            btn.style.transition = 'none';
-        });
-    });
-}
-
-// 6. Parallax Orbs on Scroll
-function parallaxOrbs() {
-    const orbs = document.querySelectorAll('.hero-orb, .footer-orb');
-    const scrollY = window.scrollY;
-    orbs.forEach((orb, i) => {
-        const speed = (i + 1) * 0.15;
-        orb.style.transform = `translateY(${scrollY * speed}px)`;
-    });
-}
-window.addEventListener('scroll', parallaxOrbs);
-
-// 7. Enhanced Scroll Reveal with Stagger
-const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-
-            // Stagger children if it's a grid
-            if (entry.target.classList.contains('cards-grid') ||
-                entry.target.classList.contains('framework-grid') ||
-                entry.target.classList.contains('about-stats-row')) {
-                const children = entry.target.children;
-                Array.from(children).forEach((child, i) => {
-                    setTimeout(() => child.classList.add('show'), i * 120);
-                });
-            }
+closeBtn.addEventListener('click',closeModal);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+// Shake animation helper
+function shake(el){el.classList.add('error');el.focus();setTimeout(()=>el.classList.remove('error'),600);}
+// Validate email format
+function isValidEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+// Next / Back navigation
+let currentLeadId = null;
+overlay.addEventListener('click',e=>{
+  const next=e.target.closest('.intake-next');
+  const back=e.target.closest('.intake-back');
+  if(next){
+    const curr=document.querySelector('.intake-step.active');
+    const currId=curr?curr.dataset.step:'email';
+    const nextId=next.dataset.next;
+    // Validate email step
+    if(currId==='email'){
+      const nameEl=document.getElementById('lead-name');
+      const emailEl=document.getElementById('lead-email');
+      let valid=true;
+      if(!nameEl.value.trim()){shake(nameEl);valid=false;}
+      if(!isValidEmail(emailEl.value.trim())){shake(emailEl);valid=false;}
+      if(!valid)return;
+      // Personalise the done screen with their name
+      const firstName=nameEl.value.trim().split(' ')[0];
+      const doneQ=document.querySelector('.intake-step[data-step="done"] .intake-question');
+      if(doneQ)doneQ.textContent=`Perfect, ${firstName}. I know exactly how to help you.`;
+      
+      // Store lead in localStorage with ID
+      currentLeadId = Date.now().toString();
+      const lead={id: currentLeadId, name:nameEl.value.trim(),email:emailEl.value.trim(),ts:new Date().toISOString(), answers:{}};
+      const leads=JSON.parse(localStorage.getItem('preciousLeads')||'[]');
+      leads.push(lead);
+      localStorage.setItem('preciousLeads',JSON.stringify(leads));
+    } else if(currId!=='done'){
+      // Validate radio selection
+      const radios=curr.querySelectorAll('input[type=radio]');
+      const answered=[...radios].find(r=>r.checked);
+      if(!answered && nextId !== 'done'){
+        next.textContent='← Pick one first!';
+        setTimeout(()=>{next.textContent= nextId === 'done' ? 'See My Results →' : 'Next →';},1500);
+        return;
+      }
+      
+      // Save answer to the lead
+      if(answered && currentLeadId) {
+        const leads=JSON.parse(localStorage.getItem('preciousLeads')||'[]');
+        const lead = leads.find(l => l.id === currentLeadId);
+        if(lead) {
+            lead.answers[`q${currId}`] = answered.value;
+            localStorage.setItem('preciousLeads', JSON.stringify(leads));
         }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.hidden-up, .hidden-left, .hidden-right, .hidden-scale').forEach(el => {
-    observer.observe(el);
-});
-
-// 8. Navbar blur on scroll
-const nav = document.querySelector('.glass-nav');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-        nav.classList.add('nav-scrolled');
-    } else {
-        nav.classList.remove('nav-scrolled');
-    }
-});
-
-// 9. Smooth Section Anchor Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
-
-// 10. Typing Effect for Subheadline
-function typeWriter(element, speed = 20) {
-    const text = element.textContent;
-    const html = element.innerHTML;
-    element.style.opacity = '0';
-
-    const io = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            element.style.opacity = '1';
-            element.innerHTML = '';
-            let i = 0;
-            // Use the plain text for typing
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    // Restore the HTML with formatting
-                    element.innerHTML = html;
-                }
-            }
-            type();
-            io.disconnect();
-        }
-    }, { threshold: 0.5 });
-    io.observe(element);
-}
-
-// 11. Animated counter for any future stat numbers
-function animateCounters() {
-    document.querySelectorAll('[data-count]').forEach(el => {
-        const io = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                const target = parseInt(el.dataset.count);
-                let current = 0;
-                const increment = target / 60;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        el.textContent = target + (el.dataset.suffix || '');
-                        clearInterval(timer);
-                    } else {
-                        el.textContent = Math.floor(current) + (el.dataset.suffix || '');
-                    }
-                }, 16);
-                io.disconnect();
-            }
-        }, { threshold: 0.5 });
-        io.observe(el);
-    });
-}
-animateCounters();
-
-// 12. Ripple effect on CTA buttons
-document.querySelectorAll('.cta-button').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        ripple.classList.add('btn-ripple');
-        const rect = this.getBoundingClientRect();
-        ripple.style.left = (e.clientX - rect.left) + 'px';
-        ripple.style.top = (e.clientY - rect.top) + 'px';
-        this.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
-    });
-});
-
-// 13. Mobile menu toggle with enhanced functionality
-const navLinks = document.querySelector('.nav-links');
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinksItems = document.querySelectorAll('.nav-links a');
-
-function closeMenu() {
-    if (navLinks && menuToggle) {
-        navLinks.classList.remove('nav-open');
-        menuToggle.classList.remove('menu-active');
-        document.body.style.overflow = '';
-    }
-}
-
-if (menuToggle) {
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isOpen = navLinks.classList.toggle('nav-open');
-        menuToggle.classList.toggle('menu-active');
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-}
-
-// Close menu when clicking on a nav link
-navLinksItems.forEach(link => {
-    link.addEventListener('click', () => {
-        closeMenu();
-    });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    const isNavArea = navLinks?.contains(e.target);
-    const isToggle = menuToggle?.contains(e.target);
-    
-    if (!isNavArea && !isToggle && navLinks?.classList.contains('nav-open')) {
-        closeMenu();
-    }
-});
-
-// Close menu on resize to desktop
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-        closeMenu();
-    }
-});
-
-// ============================================
-// 14. ANALYTICS — Bar Chart Animations
-// ============================================
-function initBarCharts() {
-    const bars = document.querySelectorAll('.bar-fill');
-    const barObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const bar = entry.target;
-                const value = parseFloat(bar.dataset.width);
-                const max = parseFloat(bar.dataset.max);
-                const percent = (value / max) * 100;
-                setTimeout(() => {
-                    bar.style.width = percent + '%';
-                    bar.classList.add('animated');
-                }, 200);
-                barObserver.unobserve(bar);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    bars.forEach(bar => barObserver.observe(bar));
-}
-initBarCharts();
-
-// 15. ANALYTICS — Circular Gauge Animations
-function initGauges() {
-    const gauges = document.querySelectorAll('.gauge-fill');
-    const circumference = 2 * Math.PI * 52; // r=52
-
-    const gaugeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const circle = entry.target;
-                const percent = parseInt(circle.dataset.percent);
-                const offset = circumference - (percent / 100) * circumference;
-                setTimeout(() => {
-                    circle.style.strokeDashoffset = offset;
-                }, 300);
-                gaugeObserver.unobserve(circle);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    gauges.forEach(g => gaugeObserver.observe(g));
-}
-initGauges();
-
-// 16. ANALYTICS — Stat Number Counters
-function initStatCounters() {
-    const statNumbers = document.querySelectorAll('.stat-number, .gauge-number');
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                const target = parseFloat(el.dataset.count);
-                const suffix = el.dataset.suffix || '';
-                const isDecimal = target % 1 !== 0;
-                let current = 0;
-                const duration = 1500;
-                const steps = 60;
-                const increment = target / steps;
-                let step = 0;
-
-                const timer = setInterval(() => {
-                    step++;
-                    current += increment;
-                    if (step >= steps) {
-                        el.textContent = (isDecimal ? target.toFixed(1) : target) + suffix;
-                        clearInterval(timer);
-                    } else {
-                        el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
-                    }
-                }, duration / steps);
-
-                counterObserver.unobserve(el);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    statNumbers.forEach(el => counterObserver.observe(el));
-}
-initStatCounters();
-
-// 17. ANALYTICS — Toggle between views
-function initAnalyticsToggle() {
-    const toggleBtns = document.querySelectorAll('.toggle-btn');
-    const views = document.querySelectorAll('.analytics-view');
-
-    toggleBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active button
-            toggleBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Switch view
-            const targetView = btn.dataset.view;
-            views.forEach(view => {
-                view.classList.remove('active-view');
-                if (view.classList.contains(targetView + '-view')) {
-                    view.classList.add('active-view');
-
-                    // Re-trigger gauge animations when switching to gauges
-                    if (targetView === 'gauges') {
-                        setTimeout(() => {
-                            initGauges();
-                            initStatCounters();
-                        }, 100);
-                    }
-                    // Re-trigger bar animations
-                    if (targetView === 'bars') {
-                        const bars = view.querySelectorAll('.bar-fill');
-                        bars.forEach(bar => {
-                            bar.style.width = '0%';
-                            bar.classList.remove('animated');
-                        });
-                        setTimeout(() => initBarCharts(), 100);
-                    }
-                }
-            });
-        });
-    });
-}
-initAnalyticsToggle();
-
-// ============================================
-// WOW FEATURES — NEXT-LEVEL INTERACTIONS
-// ============================================
-
-// 18. PRELOADER
-(function initPreloader() {
-    document.body.classList.add('loading');
-    const preloader = document.getElementById('preloader');
-    const barFill = document.querySelector('.preloader-bar-fill');
-    if (!preloader || !barFill) return;
-
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += Math.random() * 15 + 5;
-        if (progress > 90) progress = 90;
-        barFill.style.width = progress + '%';
-    }, 150);
-
-    window.addEventListener('load', () => {
-        clearInterval(interval);
-        barFill.style.width = '100%';
-
-        setTimeout(() => {
-            preloader.classList.add('preloader-done');
-            document.body.classList.remove('loading');
-            document.body.classList.add('hero-ready'); // starts the hero-load + split-char reveal now, in sync with the preloader wipe
-        }, 600);
-
-        setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 2200);
-    });
-})();
-
-
-// 19. INTERACTIVE PARTICLE NETWORK
-(function initParticles() {
-    const canvas = document.getElementById('particle-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-
-    let w, h;
-    let mouseX = -1000, mouseY = -1000;
-    const PARTICLE_COUNT = 70;
-    const CONNECTION_DIST = 140;
-    const MOUSE_RADIUS = 180;
-    const particles = [];
-
-    function resize() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    class Particle {
-        constructor() {
-            this.x = Math.random() * w;
-            this.y = Math.random() * h;
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.radius = Math.random() * 1.5 + 0.5;
-            this.baseAlpha = Math.random() * 0.4 + 0.1;
-        }
-
-        update() {
-            // Mouse repulsion
-            const dx = this.x - mouseX;
-            const dy = this.y - mouseY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < MOUSE_RADIUS) {
-                const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
-                this.vx += (dx / dist) * force * 0.6;
-                this.vy += (dy / dist) * force * 0.6;
-            }
-
-            // Damping
-            this.vx *= 0.98;
-            this.vy *= 0.98;
-
-            this.x += this.vx;
-            this.y += this.vy;
-
-            // Wrap
-            if (this.x < 0) this.x = w;
-            if (this.x > w) this.x = 0;
-            if (this.y < 0) this.y = h;
-            if (this.y > h) this.y = 0;
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(16, 185, 129, ${this.baseAlpha})`;
-            ctx.fill();
-        }
+      }
     }
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push(new Particle());
-    }
-
-    function drawConnections() {
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < CONNECTION_DIST) {
-                    const alpha = (1 - dist / CONNECTION_DIST) * 0.15;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
-                }
-            }
-        }
-
-        // Mouse connections
-        particles.forEach(p => {
-            const dx = p.x - mouseX;
-            const dy = p.y - mouseY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < MOUSE_RADIUS) {
-                const alpha = (1 - dist / MOUSE_RADIUS) * 0.25;
-                ctx.beginPath();
-                ctx.moveTo(p.x, p.y);
-                ctx.lineTo(mouseX, mouseY);
-                ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
-                ctx.lineWidth = 0.8;
-                ctx.stroke();
-            }
-        });
-    }
-
-    function loop() {
-        ctx.clearRect(0, 0, w, h);
-        particles.forEach(p => { p.update(); p.draw(); });
-        drawConnections();
-        requestAnimationFrame(loop);
-    }
-    loop();
-})();
-
-
-// 20. TEXT SCRAMBLE / DECODE EFFECT on Section Headings
-(function initTextScramble() {
-    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    function scrambleElement(el) {
-        const original = el.textContent;
-        const length = original.length;
-        let iteration = 0;
-        const totalIterations = length * 2;
-        const speed = 30;
-
-        el.style.visibility = 'visible';
-
-        const timer = setInterval(() => {
-            el.textContent = original
-                .split('')
-                .map((char, i) => {
-                    if (char === ' ') return ' ';
-                    if (i < iteration / 2) return original[i];
-                    return chars[Math.floor(Math.random() * chars.length)];
+    // IF WE ARE MOVING TO THE DONE STEP -> Send Data to Email!
+    if(nextId === 'done' && currentLeadId) {
+        const leads=JSON.parse(localStorage.getItem('preciousLeads')||'[]');
+        const lead = leads.find(l => l.id === currentLeadId);
+        if(lead) {
+            const answers = lead.answers || {};
+            // Send data silently to your email via FormSubmit
+            fetch("https://formsubmit.co/ajax/preciousadekunle784@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: "🔥 New Funnel Lead: " + lead.name,
+                    "Client Name": lead.name,
+                    "Client Email": lead.email,
+                    "1. Business Type": answers.q1 || "Skipped",
+                    "2. Biggest Headache": answers.q2 || "Skipped",
+                    "3. Monthly Revenue": answers.q3 || "Skipped",
+                    "4. Urgency": answers.q4 || "Skipped"
                 })
-                .join('');
-
-            iteration++;
-            if (iteration >= totalIterations) {
-                el.textContent = original;
-                clearInterval(timer);
-            }
-        }, speed);
+            })
+            .then(res => res.json())
+            .then(data => console.log("Lead successfully emailed!"))
+            .catch(err => console.error("Error sending lead:", err));
+        }
     }
 
-    // Observe all section h2s (not the hero h1)
-    const headings = document.querySelectorAll(
-        '.about-section h2, .services-section h2, .analytics-section h2, .process-section h2, .portfolio-section h2, .site-footer h2'
-    );
-
-    const scrambleObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                setTimeout(() => scrambleElement(entry.target), 200);
-                scrambleObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.6 });
-
-    headings.forEach(h => scrambleObserver.observe(h));
+    showStep(nextId);
+  }
+  if(back)showStep(back.dataset.back);
+});
+/* ── 1. PRELOADER ─────────────────────────────── */
+const preloader=document.getElementById('preloader');
+if(preloader){
+  setTimeout(()=>{
+    preloader.style.opacity='0';
+    preloader.style.visibility='hidden';
+    setTimeout(()=>preloader.remove(),800);
+  },2000);
+}
+/* ── 2. CURSOR GLOW ───────────────────────────── */
+const cursor=document.getElementById('cursor-glow');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
+});
+/* ── 3. PARTICLE CANVAS ───────────────────────── */
+const canvas=document.getElementById('particle-canvas');
+const ctx=canvas.getContext('2d');
+let particles=[];
+const resize=()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;};
+resize();
+window.addEventListener('resize',resize);
+class Particle{
+  constructor(){this.reset();}
+  reset(){
+    this.x=Math.random()*canvas.width;
+    this.y=Math.random()*canvas.height;
+    this.size=Math.random()*1.5+.5;
+    this.speedX=(Math.random()-.5)*.3;
+    this.speedY=(Math.random()-.5)*.3;
+    this.opacity=Math.random()*.4+.1;
+  }
+  update(){
+    this.x+=this.speedX;this.y+=this.speedY;
+    if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset();
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,255,163,${this.opacity})`;
+    ctx.fill();
+  }
+}
+for(let i=0;i<80;i++)particles.push(new Particle());
+(function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{p.update();p.draw();});
+  requestAnimationFrame(animateParticles);
 })();
-
-
-// 21. SCROLL-DRIVEN TEXT HIGHLIGHTING
-(function initScrollHighlight() {
-    const elements = document.querySelectorAll('[data-highlight]');
-
-    elements.forEach(el => {
-        const text = el.textContent.trim();
-        const words = text.split(/\s+/);
-        el.innerHTML = words
-            .map(word => `<span class="highlight-word">${word}</span>`)
-            .join(' ');
+/* ── 4. TYPEWRITER HERO ───────────────────────── */
+const el=document.getElementById('typewriter');
+const words=['Cold Traffic','Skeptical Clicks','Cold Leads','Raw Attention'];
+let wi=0,ci=0,deleting=false;
+function type(){
+  const word=words[wi];
+  el.textContent=deleting?word.substring(0,ci--):word.substring(0,ci++);
+  let speed=deleting?60:100;
+  if(!deleting&&ci===word.length+1){speed=1800;deleting=true;}
+  if(deleting&&ci<0){deleting=false;wi=(wi+1)%words.length;speed=300;}
+  setTimeout(type,speed);
+}
+type();
+/* ── 5. NAV SHRINK ON SCROLL ──────────────────── */
+const nav=document.querySelector('.glass-nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>50);
+});
+/* ── 6. MAGNETIC BUTTONS ──────────────────────── */
+document.querySelectorAll('.magnetic-btn').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const x=e.clientX-r.left-r.width/2;
+    const y=e.clientY-r.top-r.height/2;
+    btn.style.transform=`translate(${x*.15}px,${y*.15}px)`;
+  });
+  btn.addEventListener('mouseleave',()=>{btn.style.transform='translate(0,0)';});
+});
+/* ── 7. 3D TILT CARDS ─────────────────────────── */
+document.querySelectorAll('.tilt-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*14;
+    const y=((e.clientY-r.top)/r.height-.5)*-14;
+    card.style.transform=`perspective(1000px) rotateX(${y}deg) rotateY(${x}deg) scale3d(1.02,1.02,1.02)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='perspective(1000px) rotateX(0) rotateY(0) scale3d(1,1,1)';});
+});
+/* ── 8. SCROLL REVEAL ─────────────────────────── */
+const revealIO=new IntersectionObserver((entries,obs)=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    entry.target.classList.add('active');
+    // animate bars
+    entry.target.querySelectorAll('.bar-fill').forEach(bar=>{
+      const pct=(parseFloat(bar.dataset.width)/parseFloat(bar.dataset.max))*100;
+      bar.style.width=Math.min(pct,100)+'%';
     });
-
-    function updateHighlights() {
-        elements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            const viewH = window.innerHeight;
-            // Progress from 0 to 1 as element scrolls through viewport
-            const progress = Math.max(0, Math.min(1,
-                (viewH - rect.top) / (viewH + rect.height)
-            ));
-
-            const wordEls = el.querySelectorAll('.highlight-word');
-            const total = wordEls.length;
-            const litCount = Math.floor(progress * total * 1.8); // 1.8x multiplier so it completes before leaving view
-
-            wordEls.forEach((w, i) => {
-                if (i < litCount) {
-                    w.classList.add('lit');
-                } else {
-                    w.classList.remove('lit');
-                }
-            });
-        });
-    }
-
-    window.addEventListener('scroll', updateHighlights, { passive: true });
-    updateHighlights();
-})();
-
-
-// 22. CARD BORDER GLOW TRAIL
-(function initBorderGlow() {
-    const cards = document.querySelectorAll('.service-card, .framework-card');
-
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--glow-x', x + 'px');
-            card.style.setProperty('--glow-y', y + 'px');
-        });
-    });
-})();
-
-
-// 23. SMOOTH COUNTER EASING (enhanced version)
-// Already have counters — this adds an elastic easing variant
-(function enhanceCounters() {
-    // Add a subtle scale pop when counters finish
-    document.querySelectorAll('.stat-number, .gauge-number').forEach(el => {
-        const origObserver = new MutationObserver((mutations) => {
-            mutations.forEach(m => {
-                if (el.textContent.includes(el.dataset.count)) {
-                    el.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                    el.style.transform = 'scale(1.1)';
-                    setTimeout(() => {
-                        el.style.transform = 'scale(1)';
-                    }, 300);
-                    origObserver.disconnect();
-                }
-            });
-        });
-        origObserver.observe(el, { childList: true, characterData: true, subtree: true });
-    });
-})();
+    // animate counters
+    entry.target.querySelectorAll('.counter').forEach(el=>animateCounter(el));
+    obs.unobserve(entry.target);
+  });
+},{threshold:.15,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealIO.observe(el));
+/* ── 9. NUMBER COUNTER ────────────────────────── */
+function animateCounter(el){
+  const target=+el.dataset.target;
+  const suffix=el.dataset.suffix||'';
+  const isDecimal=el.dataset.decimal==='true';
+  let current=0;
+  const step=target/60;
+  const timer=setInterval(()=>{
+    current=Math.min(current+step,target);
+    el.textContent=(isDecimal?(current/10).toFixed(1):Math.floor(current))+suffix;
+    if(current>=target)clearInterval(timer);
+  },20);
+}
+});
