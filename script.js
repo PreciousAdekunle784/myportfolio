@@ -79,15 +79,17 @@ overlay.addEventListener('click',e=>{
         const lead = leads.find(l => l.id === currentLeadId);
         if(lead) {
             const answers = lead.answers || {};
-            // Send data silently to your email via FormSubmit
-            fetch("https://formsubmit.co/ajax/preciousadekunle784@gmail.com", {
+            // Send data silently to your email via Web3Forms (Instant & Reliable)
+            fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 headers: { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    _subject: "🔥 New Funnel Lead: " + lead.name,
+                    access_key: "eed432db-9f1e-4d4d-9f46-160636bf0202",
+                    subject: "🔥 New Funnel Lead: " + lead.name,
+                    from_name: "Precious Funnel Site",
                     "Client Name": lead.name,
                     "Client Email": lead.email,
                     "1. Business Type": answers.q1 || "Skipped",
@@ -97,7 +99,7 @@ overlay.addEventListener('click',e=>{
                 })
             })
             .then(res => res.json())
-            .then(data => console.log("Lead successfully emailed!"))
+            .then(data => console.log("Lead successfully emailed via Web3Forms!"))
             .catch(err => console.error("Error sending lead:", err));
         }
     }
