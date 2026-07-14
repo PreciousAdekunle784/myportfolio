@@ -463,6 +463,7 @@ initAnalyticsToggle();
         setTimeout(() => {
             preloader.classList.add('preloader-done');
             document.body.classList.remove('loading');
+            document.body.classList.add('hero-ready'); // starts the hero-load + split-char reveal now, in sync with the preloader wipe
         }, 600);
 
         setTimeout(() => {

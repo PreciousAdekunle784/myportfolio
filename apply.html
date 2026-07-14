@@ -74,14 +74,14 @@
     </nav>
 
     <main class="apply-container">
-        <section class="section-header centered-header reveal">
+        <section class="section-header centered-header hidden-up">
             <div class="roadmap-pill">Project Inquiry</div>
             <h1>Engineer Your <span class="gradient-text">Revenue Flow</span></h1>
             <p>I'm Precious, a Hydrology-trained architect. Fill out the details below to identify your funnel leaks and
                 start your scaling journey.</p>
         </section>
 
-        <div class="form-container glass-card reveal delay-1">
+        <div class="form-container glass-card hidden-up delay-100">
             <form
                 action="https://script.google.com/macros/s/AKfycbzm2kS_gU1ihhkTGHXQm9tcSyurweN6fkFIPlC4dk7-VO-XEyKWhA52gfI0jyAOm0W5/exec"
                 method="POST">
@@ -140,12 +140,12 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    entry.target.classList.add('show');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach((el) => {
+        document.querySelectorAll('.hidden-up, .hidden-left, .hidden-right, .hidden-scale').forEach((el) => {
             observer.observe(el);
         });
 

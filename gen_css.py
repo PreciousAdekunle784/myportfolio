@@ -354,8 +354,16 @@ h3 {
 /* Hero clip-path reveal */
 .hero-load {
     animation: heroReveal 1s var(--ease) forwards;
+    animation-play-state: paused;
     opacity: 0;
     clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+}
+
+/* Held paused (frozen at 0%) until the preloader clears and script.js
+   flips this on — otherwise the 1s reveal plays out hidden behind the
+   preloader and is never actually seen. */
+body.hero-ready .hero-load {
+    animation-play-state: running;
 }
 
 @keyframes heroReveal {
@@ -981,8 +989,13 @@ h3 {
     display: inline-block; opacity: 0;
     transform: translateY(28px) rotateX(-35deg);
     animation: charReveal 0.55s var(--ease) forwards;
+    animation-play-state: paused;
     background: linear-gradient(100deg, var(--text-main) 10%, var(--accent-light) 55%, var(--gold-light) 100%);
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+body.hero-ready .split-char {
+    animation-play-state: running;
 }
 
 @keyframes charReveal { to { opacity: 1; transform: translateY(0) rotateX(0); } }
@@ -1063,7 +1076,7 @@ h3 {
 /* 22. HAMBURGER MENU */
 .menu-toggle {
     display: none; flex-direction: column; gap: 6px;
-    cursor: pointer; z-index: 101; padding: 12px;
+    cursor: pointer; z-index: 1001; padding: 12px;
     background: transparent; border: none; position: relative;
     min-width: 48px; min-height: 48px; justify-content: center; align-items: center;
 }
