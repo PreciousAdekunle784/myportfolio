@@ -33,93 +33,131 @@
     <canvas id="particle-canvas"></canvas>
     <!-- INTAKE MODAL -->
     <div id="intake-overlay" class="intake-overlay" role="dialog" aria-modal="true">
-      <div class="intake-modal">
-        <button class="intake-close" id="intake-close" aria-label="Close">&times;</button>
-        <div class="intake-progress-track"><div class="intake-progress-fill" id="intake-progress"></div></div>
-        <div class="intake-steps">
-          <!-- EMAIL STEP -->
-          <div class="intake-step active" data-step="email">
-            <p class="intake-eyebrow">Before We Begin</p>
-            <h3 class="intake-question">Where should I send your personalised strategy?</h3>
-            <p class="intake-sub">Enter your details. I'll follow up with custom insights based on your answers, even if we don't connect on a call today.</p>
-            <div class="intake-fields">
-              <div class="intake-field-group">
-                <label class="intake-field-label" for="lead-name">Your First Name</label>
-                <input type="text" id="lead-name" class="intake-text-input" placeholder="e.g. Sarah" autocomplete="given-name">
-              </div>
-              <div class="intake-field-group">
-                <label class="intake-field-label" for="lead-email">Your Best Email Address</label>
-                <input type="email" id="lead-email" class="intake-text-input" placeholder="e.g. sarah@yoursite.com" autocomplete="email">
-              </div>
+        <div class="intake-modal">
+            <button class="intake-close" id="intake-close" aria-label="Close">&times;</button>
+            <div class="intake-progress-track">
+                <div class="intake-progress-fill" id="intake-progress"></div>
             </div>
-            <p class="intake-privacy">100% private. No spam. Unsubscribe anytime.</p>
-            <button class="intake-next" data-next="1">Let's Do This →</button>
-          </div>
-          <!-- STEP 1 -->
-          <div class="intake-step" data-step="1">
-            <p class="intake-eyebrow">Question 1 of 4</p>
-            <h3 class="intake-question">What best describes your business?</h3>
-            <p class="intake-sub">I tailor my strategy to your exact business model. Choose the one that fits you best.</p>
-            <div class="intake-options">
-              <label class="intake-option"><input type="radio" name="q1" value="Coach"><span>Coach</span></label>
-              <label class="intake-option"><input type="radio" name="q1" value="Consultant"><span>Consultant</span></label>
-              <label class="intake-option"><input type="radio" name="q1" value="Course Creator"><span>Course Creator</span></label>
-              <label class="intake-option"><input type="radio" name="q1" value="Agency Owner"><span>Agency Owner</span></label>
-              <label class="intake-option"><input type="radio" name="q1" value="E-commerce Brand"><span>E-commerce Brand</span></label>
-              <label class="intake-option"><input type="radio" name="q1" value="Other"><span>Something Else</span></label>
+            <div class="intake-steps">
+                <!-- EMAIL STEP -->
+                <div class="intake-step active" data-step="email">
+                    <p class="intake-eyebrow">Before We Begin</p>
+                    <h3 class="intake-question">Where should I send your personalised strategy?</h3>
+                    <p class="intake-sub">Enter your details. I'll follow up with custom insights based on your answers,
+                        even if we don't connect on a call today.</p>
+                    <div class="intake-fields">
+                        <div class="intake-field-group">
+                            <label class="intake-field-label" for="lead-name">Your First Name</label>
+                            <input type="text" id="lead-name" class="intake-text-input" placeholder="e.g. Sarah"
+                                autocomplete="given-name">
+                        </div>
+                        <div class="intake-field-group">
+                            <label class="intake-field-label" for="lead-email">Your Best Email Address</label>
+                            <input type="email" id="lead-email" class="intake-text-input"
+                                placeholder="e.g. sarah@yoursite.com" autocomplete="email">
+                        </div>
+                    </div>
+                    <p class="intake-privacy">100% private. No spam. Unsubscribe anytime.</p>
+                    <button class="intake-next" data-next="1">Let's Do This →</button>
+                </div>
+                <!-- STEP 1 -->
+                <div class="intake-step" data-step="1">
+                    <p class="intake-eyebrow">Question 1 of 4</p>
+                    <h3 class="intake-question">What best describes your business?</h3>
+                    <p class="intake-sub">I tailor my strategy to your exact business model. Choose the one that fits
+                        you best.</p>
+                    <div class="intake-options">
+                        <label class="intake-option"><input type="radio" name="q1"
+                                value="Coach"><span>Coach</span></label>
+                        <label class="intake-option"><input type="radio" name="q1"
+                                value="Consultant"><span>Consultant</span></label>
+                        <label class="intake-option"><input type="radio" name="q1" value="Course Creator"><span>Course
+                                Creator</span></label>
+                        <label class="intake-option"><input type="radio" name="q1" value="Agency Owner"><span>Agency
+                                Owner</span></label>
+                        <label class="intake-option"><input type="radio" name="q1"
+                                value="E-commerce Brand"><span>E-commerce Brand</span></label>
+                        <label class="intake-option"><input type="radio" name="q1" value="Other"><span>Something
+                                Else</span></label>
+                    </div>
+                    <div class="intake-nav"><button class="intake-back" data-back="email">← Back</button><button
+                            class="intake-next" data-next="2">Next →</button></div>
+                </div>
+                <!-- STEP 2 -->
+                <div class="intake-step" data-step="2">
+                    <p class="intake-eyebrow">Question 2 of 4</p>
+                    <h3 class="intake-question">What's your biggest marketing headache right now?</h3>
+                    <p class="intake-sub">Be honest. This helps me pinpoint exactly where you're leaking revenue.</p>
+                    <div class="intake-options">
+                        <label class="intake-option"><input type="radio" name="q2"
+                                value="Traffic isn't converting"><span>Traffic hits my page but nobody
+                                buys</span></label>
+                        <label class="intake-option"><input type="radio" name="q2"
+                                value="Weak email engagement"><span>My emails get ignored or go to spam</span></label>
+                        <label class="intake-option"><input type="radio" name="q2"
+                                value="No funnel or broken funnel"><span>I have no funnel or it's leaking
+                                badly</span></label>
+                        <label class="intake-option"><input type="radio" name="q2"
+                                value="Can't write persuasive copy"><span>I can't write copy that actually
+                                sells</span></label>
+                        <label class="intake-option"><input type="radio" name="q2"
+                                value="Everything feels broken"><span>Honestly, everything needs fixing</span></label>
+                    </div>
+                    <div class="intake-nav"><button class="intake-back" data-back="1">← Back</button><button
+                            class="intake-next" data-next="3">Next →</button></div>
+                </div>
+                <!-- STEP 3 -->
+                <div class="intake-step" data-step="3">
+                    <p class="intake-eyebrow">Question 3 of 4</p>
+                    <h3 class="intake-question">What's your current monthly revenue?</h3>
+                    <p class="intake-sub">No judgment. This tells me the right starting point for your funnel strategy.
+                    </p>
+                    <div class="intake-options">
+                        <label class="intake-option"><input type="radio" name="q3" value="Pre-revenue"><span>Pre-revenue
+                                (just starting)</span></label>
+                        <label class="intake-option"><input type="radio" name="q3" value="$1K–$5K/mo"><span>$1K to $5K
+                                per month</span></label>
+                        <label class="intake-option"><input type="radio" name="q3" value="$5K–$20K/mo"><span>$5K to $20K
+                                per month</span></label>
+                        <label class="intake-option"><input type="radio" name="q3" value="$20K–$50K/mo"><span>$20K to
+                                $50K per month</span></label>
+                        <label class="intake-option"><input type="radio" name="q3" value="$50K+/mo"><span>$50K+ per
+                                month</span></label>
+                    </div>
+                    <div class="intake-nav"><button class="intake-back" data-back="2">← Back</button><button
+                            class="intake-next" data-next="4">Next →</button></div>
+                </div>
+                <!-- STEP 4 -->
+                <div class="intake-step" data-step="4">
+                    <p class="intake-eyebrow">Question 4 of 4</p>
+                    <h3 class="intake-question">How urgently do you need this solved?</h3>
+                    <p class="intake-sub">This helps me understand your timeline so we can hit the ground running.</p>
+                    <div class="intake-options">
+                        <label class="intake-option"><input type="radio" name="q4" value="ASAP"><span>As soon as
+                                possible</span></label>
+                        <label class="intake-option"><input type="radio" name="q4" value="Within 30 days"><span>Within
+                                the next 30 days</span></label>
+                        <label class="intake-option"><input type="radio" name="q4" value="1–3 months"><span>Sometime in
+                                the next 1 to 3 months</span></label>
+                        <label class="intake-option"><input type="radio" name="q4" value="Just exploring"><span>Just
+                                exploring my options</span></label>
+                    </div>
+                    <div class="intake-nav"><button class="intake-back" data-back="3">← Back</button><button
+                            class="intake-next" data-next="done">See My Results →</button></div>
+                </div>
+                <!-- DONE -->
+                <div class="intake-step" data-step="done">
+                    <h3 class="intake-question" id="done-heading">Perfect. I know exactly how to help you.</h3>
+                    <p class="intake-sub">Based on your answers, I already have a game plan in mind. Book your free
+                        30-minute strategy call and I'll show you exactly where you're losing revenue and how to stop
+                        the bleed.</p>
+                    <p class="intake-guarantee"><strong>The Guarantee:</strong> No hard sell. No pressure. Just pure,
+                        actionable revenue strategy.</p>
+                    <a href="https://calendly.com/preciousadekunle784" target="_blank"
+                        class="cta-button main-cta intake-calendly">Book My Free Strategy Call →</a>
+                </div>
             </div>
-            <div class="intake-nav"><button class="intake-back" data-back="email">← Back</button><button class="intake-next" data-next="2">Next →</button></div>
-          </div>
-          <!-- STEP 2 -->
-          <div class="intake-step" data-step="2">
-            <p class="intake-eyebrow">Question 2 of 4</p>
-            <h3 class="intake-question">What's your biggest marketing headache right now?</h3>
-            <p class="intake-sub">Be honest. This helps me pinpoint exactly where you're leaking revenue.</p>
-            <div class="intake-options">
-              <label class="intake-option"><input type="radio" name="q2" value="Traffic isn't converting"><span>Traffic hits my page but nobody buys</span></label>
-              <label class="intake-option"><input type="radio" name="q2" value="Weak email engagement"><span>My emails get ignored or go to spam</span></label>
-              <label class="intake-option"><input type="radio" name="q2" value="No funnel or broken funnel"><span>I have no funnel or it's leaking badly</span></label>
-              <label class="intake-option"><input type="radio" name="q2" value="Can't write persuasive copy"><span>I can't write copy that actually sells</span></label>
-              <label class="intake-option"><input type="radio" name="q2" value="Everything feels broken"><span>Honestly, everything needs fixing</span></label>
-            </div>
-            <div class="intake-nav"><button class="intake-back" data-back="1">← Back</button><button class="intake-next" data-next="3">Next →</button></div>
-          </div>
-          <!-- STEP 3 -->
-          <div class="intake-step" data-step="3">
-            <p class="intake-eyebrow">Question 3 of 4</p>
-            <h3 class="intake-question">What's your current monthly revenue?</h3>
-            <p class="intake-sub">No judgment. This tells me the right starting point for your funnel strategy.</p>
-            <div class="intake-options">
-              <label class="intake-option"><input type="radio" name="q3" value="Pre-revenue"><span>Pre-revenue (just starting)</span></label>
-              <label class="intake-option"><input type="radio" name="q3" value="$1K–$5K/mo"><span>$1K to $5K per month</span></label>
-              <label class="intake-option"><input type="radio" name="q3" value="$5K–$20K/mo"><span>$5K to $20K per month</span></label>
-              <label class="intake-option"><input type="radio" name="q3" value="$20K–$50K/mo"><span>$20K to $50K per month</span></label>
-              <label class="intake-option"><input type="radio" name="q3" value="$50K+/mo"><span>$50K+ per month</span></label>
-            </div>
-            <div class="intake-nav"><button class="intake-back" data-back="2">← Back</button><button class="intake-next" data-next="4">Next →</button></div>
-          </div>
-          <!-- STEP 4 -->
-          <div class="intake-step" data-step="4">
-            <p class="intake-eyebrow">Question 4 of 4</p>
-            <h3 class="intake-question">How urgently do you need this solved?</h3>
-            <p class="intake-sub">This helps me understand your timeline so we can hit the ground running.</p>
-            <div class="intake-options">
-              <label class="intake-option"><input type="radio" name="q4" value="ASAP"><span>As soon as possible</span></label>
-              <label class="intake-option"><input type="radio" name="q4" value="Within 30 days"><span>Within the next 30 days</span></label>
-              <label class="intake-option"><input type="radio" name="q4" value="1–3 months"><span>Sometime in the next 1 to 3 months</span></label>
-              <label class="intake-option"><input type="radio" name="q4" value="Just exploring"><span>Just exploring my options</span></label>
-            </div>
-            <div class="intake-nav"><button class="intake-back" data-back="3">← Back</button><button class="intake-next" data-next="done">See My Results →</button></div>
-          </div>
-          <!-- DONE -->
-          <div class="intake-step" data-step="done">
-            <h3 class="intake-question" id="done-heading">Perfect. I know exactly how to help you.</h3>
-            <p class="intake-sub">Based on your answers, I already have a game plan in mind. Book your free 30-minute strategy call and I'll show you exactly where you're losing revenue and how to stop the bleed.</p>
-            <p class="intake-guarantee"><strong>The Guarantee:</strong> No hard sell. No pressure. Just pure, actionable revenue strategy.</p>
-            <a href="https://calendly.com/preciousadekunle784" target="_blank" class="cta-button main-cta intake-calendly">Book My Free Strategy Call →</a>
-          </div>
         </div>
-      </div>
     </div>
     <!-- NAV -->
     <nav class="glass-nav">
@@ -145,13 +183,19 @@
                 Into <span class="gradient-text">Liquid Revenue.</span>
             </h1>
             <p class="subheadline">
-                The copywriter, creative strategist, &amp; funnel architect for coaches who are tired of manual launching. I build the
+                The copywriter, creative strategist, &amp; funnel architect for coaches who are tired of manual
+                launching. I build the
                 <strong>Landing Pages</strong> and <strong>Email Automations</strong> that scale your revenue 24/7.
             </p>
-            <div class="button-group">
-                <a href="https://calendly.com/preciousadekunle784" target="_blank"
-                    class="cta-button main-cta magnetic-btn">Start Your Project</a>
-                <p class="micro-copy">No generic templates. Custom strategy only.</p>
+            <div class="button-group" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://calendly.com/preciousadekunle784" target="_blank"
+                        class="cta-button main-cta magnetic-btn">Start Your Project</a>
+                    <a href="ADEKUNLE PRECIOUS CV (1).pdf" target="_blank" class="cta-button magnetic-btn cv-pulse-btn"
+                        style="padding: 1rem 2rem; font-size: 1.1rem; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.2);">View
+                        My CV</a>
+                </div>
+                <p class="micro-copy" style="margin-top: 0;">No generic templates. Custom strategy only.</p>
             </div>
             <a href="#about" class="scroll-hint" aria-label="Scroll to about">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -384,7 +428,8 @@
             <div class="timeline-item reveal" style="transition-delay:200ms">
                 <div class="timeline-content"><span class="step-tag">Step 03</span>
                     <h3>Automation Integration</h3>
-                    <p>The tech phase. I build the backend logic: tags, triggers, and sequences, so the funnel runs without you touching it.</p>
+                    <p>The tech phase. I build the backend logic: tags, triggers, and sequences, so the funnel runs
+                        without you touching it.</p>
                 </div>
             </div>
             <div class="timeline-item right reveal" style="transition-delay:300ms">
@@ -421,19 +466,21 @@
                 <span class="step-tag">Case Study 02</span>
                 <h3>Agency Revenue Funnel</h3>
                 <div class="framework-meta">Client: Prolanz Digitals</div>
-                <p>Engineered a high-converting digital marketing agency funnel focused on predictable lead generation and automated client acquisition systems.</p>
+                <p>Engineered a high-converting digital marketing agency funnel focused on predictable lead generation
+                    and automated client acquisition systems.</p>
                 <ul class="framework-list">
                     <li>Revenue System Architecture</li>
                     <li>Direct Response Copywriting</li>
-                    <li><a href="https://prolanzs.vercel.app" target="_blank"
-                            class="live-link">View Live Project →</a></li>
+                    <li><a href="https://prolanzs.vercel.app" target="_blank" class="live-link">View Live Project →</a>
+                    </li>
                 </ul>
             </div>
             <div class="framework-card reveal" style="transition-delay:200ms">
                 <span class="step-tag">Case Study 03</span>
                 <h3>Real Estate Brand Platform</h3>
                 <div class="framework-meta">Client: Lattes &amp; Leases</div>
-                <p>Engineered a full-scale brand ecosystem for a real estate investor, including course sales pages, resource hubs, lead magnets, and a multi-page funnel turning cold traffic into enrolled students.
+                <p>Engineered a full-scale brand ecosystem for a real estate investor, including course sales pages,
+                    resource hubs, lead magnets, and a multi-page funnel turning cold traffic into enrolled students.
                 </p>
                 <ul class="framework-list">
                     <li>Multi-Page Funnel Architecture</li>
@@ -461,7 +508,8 @@
                 <span class="step-tag">Copywriting Asset</span>
                 <h3>Revenue-Scaling Ads Copy</h3>
                 <div class="framework-meta">Client: Wander Coaching Academy</div>
-                <p>A direct-response ad targeting business owners stuck at a revenue plateau, using social proof, data-driven results (42% revenue increase), and a clear CTA to drive coaching enrollments.</p>
+                <p>A direct-response ad targeting business owners stuck at a revenue plateau, using social proof,
+                    data-driven results (42% revenue increase), and a clear CTA to drive coaching enrollments.</p>
                 <ul class="framework-list">
                     <li>Pain-Point Agitation &amp; Solution</li>
                     <li>Social Proof with Real Metrics</li>
